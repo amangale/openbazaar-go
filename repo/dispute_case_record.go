@@ -7,10 +7,10 @@ import (
 )
 
 var (
-	ModeratorDisputeExpiry_firstInterval  = time.Duration(15*24) * time.Hour
-	ModeratorDisputeExpiry_secondInterval = time.Duration(30*24) * time.Hour
-	ModeratorDisputeExpiry_thirdInterval  = time.Duration(44*24) * time.Hour
-	ModeratorDisputeExpiry_lastInterval   = time.Duration(45*24) * time.Hour
+	ModeratorDisputeExpiry_firstInterval  = time.Duration(1) * time.Minute
+	ModeratorDisputeExpiry_secondInterval = time.Duration(3) * time.Minute
+	ModeratorDisputeExpiry_thirdInterval  = time.Duration(4) * time.Minute
+	ModeratorDisputeExpiry_lastInterval   = time.Duration(5) * time.Minute
 )
 
 // DisputeCaseRecord is a one-to-one relationship with records in the

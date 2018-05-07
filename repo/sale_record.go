@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	VendorDisputeTimeout_lastInterval = time.Duration(45*24) * time.Hour
+	VendorDisputeTimeout_lastInterval = time.Duration(5) * time.Minute
 )
 
 // SaleRecord represents a one-to-one relationship with records

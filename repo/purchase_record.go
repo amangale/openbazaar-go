@@ -7,10 +7,10 @@ import (
 )
 
 var (
-	BuyerDisputeTimeout_firstInterval  = time.Duration(15*24) * time.Hour
-	BuyerDisputeTimeout_secondInterval = time.Duration(40*24) * time.Hour
-	BuyerDisputeTimeout_thirdInterval  = time.Duration(44*24) * time.Hour
-	BuyerDisputeTimeout_lastInterval   = time.Duration(45*24) * time.Hour
+	BuyerDisputeTimeout_firstInterval  = time.Duration(1) * time.Minute
+	BuyerDisputeTimeout_secondInterval = time.Duration(3) * time.Minute
+	BuyerDisputeTimeout_thirdInterval  = time.Duration(4) * time.Minute
+	BuyerDisputeTimeout_lastInterval   = time.Duration(5) * time.Minute
 )
 
 // PurchaseRecord represents a one-to-one relationship with records
