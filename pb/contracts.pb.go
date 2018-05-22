@@ -6,12 +6,18 @@ package pb
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import google_protobuf "github.com/golang/protobuf/ptypes/timestamp"
+import timestamp "github.com/golang/protobuf/ptypes/timestamp"
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type Listing_Metadata_ContractType int32
 
@@ -42,7 +48,7 @@ func (x Listing_Metadata_ContractType) String() string {
 	return proto.EnumName(Listing_Metadata_ContractType_name, int32(x))
 }
 func (Listing_Metadata_ContractType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{1, 0, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 0, 0}
 }
 
 type Listing_Metadata_Format int32
@@ -65,7 +71,7 @@ func (x Listing_Metadata_Format) String() string {
 	return proto.EnumName(Listing_Metadata_Format_name, int32(x))
 }
 func (Listing_Metadata_Format) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{1, 0, 1}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 0, 1}
 }
 
 type Listing_ShippingOption_ShippingType int32
@@ -88,7 +94,7 @@ func (x Listing_ShippingOption_ShippingType) String() string {
 	return proto.EnumName(Listing_ShippingOption_ShippingType_name, int32(x))
 }
 func (Listing_ShippingOption_ShippingType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{1, 2, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 2, 0}
 }
 
 type Order_Payment_Method int32
@@ -113,7 +119,9 @@ var Order_Payment_Method_value = map[string]int32{
 func (x Order_Payment_Method) String() string {
 	return proto.EnumName(Order_Payment_Method_name, int32(x))
 }
-func (Order_Payment_Method) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 2, 0} }
+func (Order_Payment_Method) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 2, 0}
+}
 
 type Signature_Section int32
 
@@ -152,7 +160,9 @@ var Signature_Section_value = map[string]int32{
 func (x Signature_Section) String() string {
 	return proto.EnumName(Signature_Section_name, int32(x))
 }
-func (Signature_Section) EnumDescriptor() ([]byte, []int) { return fileDescriptor1, []int{16, 0} }
+func (Signature_Section) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{16, 0}
+}
 
 type RicardianContract struct {
 	VendorListings          []*Listing          `protobuf:"bytes,1,rep,name=vendorListings" json:"vendorListings,omitempty"`
@@ -166,12 +176,34 @@ type RicardianContract struct {
 	Refund                  *Refund             `protobuf:"bytes,9,opt,name=refund" json:"refund,omitempty"`
 	Signatures              []*Signature        `protobuf:"bytes,10,rep,name=signatures" json:"signatures,omitempty"`
 	Errors                  []string            `protobuf:"bytes,11,rep,name=errors" json:"errors,omitempty"`
+	XXX_NoUnkeyedLiteral    struct{}            `json:"-"`
+	XXX_unrecognized        []byte              `json:"-"`
+	XXX_sizecache           int32               `json:"-"`
 }
 
-func (m *RicardianContract) Reset()                    { *m = RicardianContract{} }
-func (m *RicardianContract) String() string            { return proto.CompactTextString(m) }
-func (*RicardianContract) ProtoMessage()               {}
-func (*RicardianContract) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
+func (m *RicardianContract) Reset()         { *m = RicardianContract{} }
+func (m *RicardianContract) String() string { return proto.CompactTextString(m) }
+func (*RicardianContract) ProtoMessage()    {}
+func (*RicardianContract) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{0}
+}
+func (m *RicardianContract) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RicardianContract.Unmarshal(m, b)
+}
+func (m *RicardianContract) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RicardianContract.Marshal(b, m, deterministic)
+}
+func (dst *RicardianContract) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RicardianContract.Merge(dst, src)
+}
+func (m *RicardianContract) XXX_Size() int {
+	return xxx_messageInfo_RicardianContract.Size(m)
+}
+func (m *RicardianContract) XXX_DiscardUnknown() {
+	xxx_messageInfo_RicardianContract.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RicardianContract proto.InternalMessageInfo
 
 func (m *RicardianContract) GetVendorListings() []*Listing {
 	if m != nil {
@@ -251,22 +283,44 @@ func (m *RicardianContract) GetErrors() []string {
 }
 
 type Listing struct {
-	Slug               string                    `protobuf:"bytes,1,opt,name=slug" json:"slug,omitempty"`
-	VendorID           *ID                       `protobuf:"bytes,2,opt,name=vendorID" json:"vendorID,omitempty"`
-	Metadata           *Listing_Metadata         `protobuf:"bytes,3,opt,name=metadata" json:"metadata,omitempty"`
-	Item               *Listing_Item             `protobuf:"bytes,4,opt,name=item" json:"item,omitempty"`
-	ShippingOptions    []*Listing_ShippingOption `protobuf:"bytes,5,rep,name=shippingOptions" json:"shippingOptions,omitempty"`
-	Taxes              []*Listing_Tax            `protobuf:"bytes,6,rep,name=taxes" json:"taxes,omitempty"`
-	Coupons            []*Listing_Coupon         `protobuf:"bytes,7,rep,name=coupons" json:"coupons,omitempty"`
-	Moderators         []string                  `protobuf:"bytes,8,rep,name=moderators" json:"moderators,omitempty"`
-	TermsAndConditions string                    `protobuf:"bytes,9,opt,name=termsAndConditions" json:"termsAndConditions,omitempty"`
-	RefundPolicy       string                    `protobuf:"bytes,10,opt,name=refundPolicy" json:"refundPolicy,omitempty"`
+	Slug                 string                    `protobuf:"bytes,1,opt,name=slug" json:"slug,omitempty"`
+	VendorID             *ID                       `protobuf:"bytes,2,opt,name=vendorID" json:"vendorID,omitempty"`
+	Metadata             *Listing_Metadata         `protobuf:"bytes,3,opt,name=metadata" json:"metadata,omitempty"`
+	Item                 *Listing_Item             `protobuf:"bytes,4,opt,name=item" json:"item,omitempty"`
+	ShippingOptions      []*Listing_ShippingOption `protobuf:"bytes,5,rep,name=shippingOptions" json:"shippingOptions,omitempty"`
+	Taxes                []*Listing_Tax            `protobuf:"bytes,6,rep,name=taxes" json:"taxes,omitempty"`
+	Coupons              []*Listing_Coupon         `protobuf:"bytes,7,rep,name=coupons" json:"coupons,omitempty"`
+	Moderators           []string                  `protobuf:"bytes,8,rep,name=moderators" json:"moderators,omitempty"`
+	TermsAndConditions   string                    `protobuf:"bytes,9,opt,name=termsAndConditions" json:"termsAndConditions,omitempty"`
+	RefundPolicy         string                    `protobuf:"bytes,10,opt,name=refundPolicy" json:"refundPolicy,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
+	XXX_unrecognized     []byte                    `json:"-"`
+	XXX_sizecache        int32                     `json:"-"`
 }
 
-func (m *Listing) Reset()                    { *m = Listing{} }
-func (m *Listing) String() string            { return proto.CompactTextString(m) }
-func (*Listing) ProtoMessage()               {}
-func (*Listing) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1} }
+func (m *Listing) Reset()         { *m = Listing{} }
+func (m *Listing) String() string { return proto.CompactTextString(m) }
+func (*Listing) ProtoMessage()    {}
+func (*Listing) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1}
+}
+func (m *Listing) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing.Unmarshal(m, b)
+}
+func (m *Listing) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing.Marshal(b, m, deterministic)
+}
+func (dst *Listing) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing.Merge(dst, src)
+}
+func (m *Listing) XXX_Size() int {
+	return xxx_messageInfo_Listing.Size(m)
+}
+func (m *Listing) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing proto.InternalMessageInfo
 
 func (m *Listing) GetSlug() string {
 	if m != nil {
@@ -339,22 +393,44 @@ func (m *Listing) GetRefundPolicy() string {
 }
 
 type Listing_Metadata struct {
-	Version            uint32                        `protobuf:"varint,1,opt,name=version" json:"version,omitempty"`
-	ContractType       Listing_Metadata_ContractType `protobuf:"varint,2,opt,name=contractType,enum=Listing_Metadata_ContractType" json:"contractType,omitempty"`
-	Format             Listing_Metadata_Format       `protobuf:"varint,3,opt,name=format,enum=Listing_Metadata_Format" json:"format,omitempty"`
-	Expiry             *google_protobuf.Timestamp    `protobuf:"bytes,4,opt,name=expiry" json:"expiry,omitempty"`
-	AcceptedCurrencies []string                      `protobuf:"bytes,5,rep,name=acceptedCurrencies" json:"acceptedCurrencies,omitempty"`
-	PricingCurrency    string                        `protobuf:"bytes,6,opt,name=pricingCurrency" json:"pricingCurrency,omitempty"`
-	Language           string                        `protobuf:"bytes,7,opt,name=language" json:"language,omitempty"`
-	EscrowTimeoutHours uint32                        `protobuf:"varint,8,opt,name=escrowTimeoutHours" json:"escrowTimeoutHours,omitempty"`
-	CoinType           string                        `protobuf:"bytes,9,opt,name=coinType" json:"coinType,omitempty"`
-	CoinDivisibility   uint32                        `protobuf:"varint,10,opt,name=coinDivisibility" json:"coinDivisibility,omitempty"`
+	Version              uint32                        `protobuf:"varint,1,opt,name=version" json:"version,omitempty"`
+	ContractType         Listing_Metadata_ContractType `protobuf:"varint,2,opt,name=contractType,enum=Listing_Metadata_ContractType" json:"contractType,omitempty"`
+	Format               Listing_Metadata_Format       `protobuf:"varint,3,opt,name=format,enum=Listing_Metadata_Format" json:"format,omitempty"`
+	Expiry               *timestamp.Timestamp          `protobuf:"bytes,4,opt,name=expiry" json:"expiry,omitempty"`
+	AcceptedCurrencies   []string                      `protobuf:"bytes,5,rep,name=acceptedCurrencies" json:"acceptedCurrencies,omitempty"`
+	PricingCurrency      string                        `protobuf:"bytes,6,opt,name=pricingCurrency" json:"pricingCurrency,omitempty"`
+	Language             string                        `protobuf:"bytes,7,opt,name=language" json:"language,omitempty"`
+	EscrowTimeoutHours   uint32                        `protobuf:"varint,8,opt,name=escrowTimeoutHours" json:"escrowTimeoutHours,omitempty"`
+	CoinType             string                        `protobuf:"bytes,9,opt,name=coinType" json:"coinType,omitempty"`
+	CoinDivisibility     uint32                        `protobuf:"varint,10,opt,name=coinDivisibility" json:"coinDivisibility,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                      `json:"-"`
+	XXX_unrecognized     []byte                        `json:"-"`
+	XXX_sizecache        int32                         `json:"-"`
 }
 
-func (m *Listing_Metadata) Reset()                    { *m = Listing_Metadata{} }
-func (m *Listing_Metadata) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Metadata) ProtoMessage()               {}
-func (*Listing_Metadata) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 0} }
+func (m *Listing_Metadata) Reset()         { *m = Listing_Metadata{} }
+func (m *Listing_Metadata) String() string { return proto.CompactTextString(m) }
+func (*Listing_Metadata) ProtoMessage()    {}
+func (*Listing_Metadata) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 0}
+}
+func (m *Listing_Metadata) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Metadata.Unmarshal(m, b)
+}
+func (m *Listing_Metadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Metadata.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Metadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Metadata.Merge(dst, src)
+}
+func (m *Listing_Metadata) XXX_Size() int {
+	return xxx_messageInfo_Listing_Metadata.Size(m)
+}
+func (m *Listing_Metadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Metadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Metadata proto.InternalMessageInfo
 
 func (m *Listing_Metadata) GetVersion() uint32 {
 	if m != nil {
@@ -377,7 +453,7 @@ func (m *Listing_Metadata) GetFormat() Listing_Metadata_Format {
 	return Listing_Metadata_FIXED_PRICE
 }
 
-func (m *Listing_Metadata) GetExpiry() *google_protobuf.Timestamp {
+func (m *Listing_Metadata) GetExpiry() *timestamp.Timestamp {
 	if m != nil {
 		return m.Expiry
 	}
@@ -427,24 +503,46 @@ func (m *Listing_Metadata) GetCoinDivisibility() uint32 {
 }
 
 type Listing_Item struct {
-	Title          string                 `protobuf:"bytes,1,opt,name=title" json:"title,omitempty"`
-	Description    string                 `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
-	ProcessingTime string                 `protobuf:"bytes,3,opt,name=processingTime" json:"processingTime,omitempty"`
-	Price          uint64                 `protobuf:"varint,4,opt,name=price" json:"price,omitempty"`
-	Nsfw           bool                   `protobuf:"varint,5,opt,name=nsfw" json:"nsfw,omitempty"`
-	Tags           []string               `protobuf:"bytes,6,rep,name=tags" json:"tags,omitempty"`
-	Images         []*Listing_Item_Image  `protobuf:"bytes,7,rep,name=images" json:"images,omitempty"`
-	Categories     []string               `protobuf:"bytes,8,rep,name=categories" json:"categories,omitempty"`
-	Grams          float32                `protobuf:"fixed32,9,opt,name=grams" json:"grams,omitempty"`
-	Condition      string                 `protobuf:"bytes,10,opt,name=condition" json:"condition,omitempty"`
-	Options        []*Listing_Item_Option `protobuf:"bytes,11,rep,name=options" json:"options,omitempty"`
-	Skus           []*Listing_Item_Sku    `protobuf:"bytes,12,rep,name=skus" json:"skus,omitempty"`
+	Title                string                 `protobuf:"bytes,1,opt,name=title" json:"title,omitempty"`
+	Description          string                 `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
+	ProcessingTime       string                 `protobuf:"bytes,3,opt,name=processingTime" json:"processingTime,omitempty"`
+	Price                uint64                 `protobuf:"varint,4,opt,name=price" json:"price,omitempty"`
+	Nsfw                 bool                   `protobuf:"varint,5,opt,name=nsfw" json:"nsfw,omitempty"`
+	Tags                 []string               `protobuf:"bytes,6,rep,name=tags" json:"tags,omitempty"`
+	Images               []*Listing_Item_Image  `protobuf:"bytes,7,rep,name=images" json:"images,omitempty"`
+	Categories           []string               `protobuf:"bytes,8,rep,name=categories" json:"categories,omitempty"`
+	Grams                float32                `protobuf:"fixed32,9,opt,name=grams" json:"grams,omitempty"`
+	Condition            string                 `protobuf:"bytes,10,opt,name=condition" json:"condition,omitempty"`
+	Options              []*Listing_Item_Option `protobuf:"bytes,11,rep,name=options" json:"options,omitempty"`
+	Skus                 []*Listing_Item_Sku    `protobuf:"bytes,12,rep,name=skus" json:"skus,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *Listing_Item) Reset()                    { *m = Listing_Item{} }
-func (m *Listing_Item) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Item) ProtoMessage()               {}
-func (*Listing_Item) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 1} }
+func (m *Listing_Item) Reset()         { *m = Listing_Item{} }
+func (m *Listing_Item) String() string { return proto.CompactTextString(m) }
+func (*Listing_Item) ProtoMessage()    {}
+func (*Listing_Item) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 1}
+}
+func (m *Listing_Item) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Item.Unmarshal(m, b)
+}
+func (m *Listing_Item) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Item.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Item) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Item.Merge(dst, src)
+}
+func (m *Listing_Item) XXX_Size() int {
+	return xxx_messageInfo_Listing_Item.Size(m)
+}
+func (m *Listing_Item) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Item.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Item proto.InternalMessageInfo
 
 func (m *Listing_Item) GetTitle() string {
 	if m != nil {
@@ -531,15 +629,37 @@ func (m *Listing_Item) GetSkus() []*Listing_Item_Sku {
 }
 
 type Listing_Item_Option struct {
-	Name        string                         `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Description string                         `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
-	Variants    []*Listing_Item_Option_Variant `protobuf:"bytes,3,rep,name=variants" json:"variants,omitempty"`
+	Name                 string                         `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Description          string                         `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
+	Variants             []*Listing_Item_Option_Variant `protobuf:"bytes,3,rep,name=variants" json:"variants,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                       `json:"-"`
+	XXX_unrecognized     []byte                         `json:"-"`
+	XXX_sizecache        int32                          `json:"-"`
 }
 
-func (m *Listing_Item_Option) Reset()                    { *m = Listing_Item_Option{} }
-func (m *Listing_Item_Option) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Item_Option) ProtoMessage()               {}
-func (*Listing_Item_Option) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 1, 0} }
+func (m *Listing_Item_Option) Reset()         { *m = Listing_Item_Option{} }
+func (m *Listing_Item_Option) String() string { return proto.CompactTextString(m) }
+func (*Listing_Item_Option) ProtoMessage()    {}
+func (*Listing_Item_Option) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 1, 0}
+}
+func (m *Listing_Item_Option) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Item_Option.Unmarshal(m, b)
+}
+func (m *Listing_Item_Option) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Item_Option.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Item_Option) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Item_Option.Merge(dst, src)
+}
+func (m *Listing_Item_Option) XXX_Size() int {
+	return xxx_messageInfo_Listing_Item_Option.Size(m)
+}
+func (m *Listing_Item_Option) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Item_Option.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Item_Option proto.InternalMessageInfo
 
 func (m *Listing_Item_Option) GetName() string {
 	if m != nil {
@@ -563,16 +683,36 @@ func (m *Listing_Item_Option) GetVariants() []*Listing_Item_Option_Variant {
 }
 
 type Listing_Item_Option_Variant struct {
-	Name  string              `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Image *Listing_Item_Image `protobuf:"bytes,2,opt,name=image" json:"image,omitempty"`
+	Name                 string              `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Image                *Listing_Item_Image `protobuf:"bytes,2,opt,name=image" json:"image,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
 func (m *Listing_Item_Option_Variant) Reset()         { *m = Listing_Item_Option_Variant{} }
 func (m *Listing_Item_Option_Variant) String() string { return proto.CompactTextString(m) }
 func (*Listing_Item_Option_Variant) ProtoMessage()    {}
 func (*Listing_Item_Option_Variant) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{1, 1, 0, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 1, 0, 0}
 }
+func (m *Listing_Item_Option_Variant) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Item_Option_Variant.Unmarshal(m, b)
+}
+func (m *Listing_Item_Option_Variant) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Item_Option_Variant.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Item_Option_Variant) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Item_Option_Variant.Merge(dst, src)
+}
+func (m *Listing_Item_Option_Variant) XXX_Size() int {
+	return xxx_messageInfo_Listing_Item_Option_Variant.Size(m)
+}
+func (m *Listing_Item_Option_Variant) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Item_Option_Variant.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Item_Option_Variant proto.InternalMessageInfo
 
 func (m *Listing_Item_Option_Variant) GetName() string {
 	if m != nil {
@@ -589,16 +729,38 @@ func (m *Listing_Item_Option_Variant) GetImage() *Listing_Item_Image {
 }
 
 type Listing_Item_Sku struct {
-	VariantCombo []uint32 `protobuf:"varint,1,rep,packed,name=variantCombo" json:"variantCombo,omitempty"`
-	ProductID    string   `protobuf:"bytes,2,opt,name=productID" json:"productID,omitempty"`
-	Surcharge    int64    `protobuf:"varint,3,opt,name=surcharge" json:"surcharge,omitempty"`
-	Quantity     int64    `protobuf:"varint,4,opt,name=quantity" json:"quantity,omitempty"`
+	VariantCombo         []uint32 `protobuf:"varint,1,rep,packed,name=variantCombo" json:"variantCombo,omitempty"`
+	ProductID            string   `protobuf:"bytes,2,opt,name=productID" json:"productID,omitempty"`
+	Surcharge            int64    `protobuf:"varint,3,opt,name=surcharge" json:"surcharge,omitempty"`
+	Quantity             int64    `protobuf:"varint,4,opt,name=quantity" json:"quantity,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Listing_Item_Sku) Reset()                    { *m = Listing_Item_Sku{} }
-func (m *Listing_Item_Sku) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Item_Sku) ProtoMessage()               {}
-func (*Listing_Item_Sku) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 1, 1} }
+func (m *Listing_Item_Sku) Reset()         { *m = Listing_Item_Sku{} }
+func (m *Listing_Item_Sku) String() string { return proto.CompactTextString(m) }
+func (*Listing_Item_Sku) ProtoMessage()    {}
+func (*Listing_Item_Sku) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 1, 1}
+}
+func (m *Listing_Item_Sku) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Item_Sku.Unmarshal(m, b)
+}
+func (m *Listing_Item_Sku) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Item_Sku.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Item_Sku) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Item_Sku.Merge(dst, src)
+}
+func (m *Listing_Item_Sku) XXX_Size() int {
+	return xxx_messageInfo_Listing_Item_Sku.Size(m)
+}
+func (m *Listing_Item_Sku) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Item_Sku.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Item_Sku proto.InternalMessageInfo
 
 func (m *Listing_Item_Sku) GetVariantCombo() []uint32 {
 	if m != nil {
@@ -629,18 +791,40 @@ func (m *Listing_Item_Sku) GetQuantity() int64 {
 }
 
 type Listing_Item_Image struct {
-	Filename string `protobuf:"bytes,1,opt,name=filename" json:"filename,omitempty"`
-	Original string `protobuf:"bytes,2,opt,name=original" json:"original,omitempty"`
-	Large    string `protobuf:"bytes,3,opt,name=large" json:"large,omitempty"`
-	Medium   string `protobuf:"bytes,4,opt,name=medium" json:"medium,omitempty"`
-	Small    string `protobuf:"bytes,5,opt,name=small" json:"small,omitempty"`
-	Tiny     string `protobuf:"bytes,6,opt,name=tiny" json:"tiny,omitempty"`
+	Filename             string   `protobuf:"bytes,1,opt,name=filename" json:"filename,omitempty"`
+	Original             string   `protobuf:"bytes,2,opt,name=original" json:"original,omitempty"`
+	Large                string   `protobuf:"bytes,3,opt,name=large" json:"large,omitempty"`
+	Medium               string   `protobuf:"bytes,4,opt,name=medium" json:"medium,omitempty"`
+	Small                string   `protobuf:"bytes,5,opt,name=small" json:"small,omitempty"`
+	Tiny                 string   `protobuf:"bytes,6,opt,name=tiny" json:"tiny,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Listing_Item_Image) Reset()                    { *m = Listing_Item_Image{} }
-func (m *Listing_Item_Image) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Item_Image) ProtoMessage()               {}
-func (*Listing_Item_Image) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 1, 2} }
+func (m *Listing_Item_Image) Reset()         { *m = Listing_Item_Image{} }
+func (m *Listing_Item_Image) String() string { return proto.CompactTextString(m) }
+func (*Listing_Item_Image) ProtoMessage()    {}
+func (*Listing_Item_Image) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 1, 2}
+}
+func (m *Listing_Item_Image) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Item_Image.Unmarshal(m, b)
+}
+func (m *Listing_Item_Image) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Item_Image.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Item_Image) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Item_Image.Merge(dst, src)
+}
+func (m *Listing_Item_Image) XXX_Size() int {
+	return xxx_messageInfo_Listing_Item_Image.Size(m)
+}
+func (m *Listing_Item_Image) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Item_Image.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Item_Image proto.InternalMessageInfo
 
 func (m *Listing_Item_Image) GetFilename() string {
 	if m != nil {
@@ -685,16 +869,38 @@ func (m *Listing_Item_Image) GetTiny() string {
 }
 
 type Listing_ShippingOption struct {
-	Name     string                              `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Type     Listing_ShippingOption_ShippingType `protobuf:"varint,2,opt,name=type,enum=Listing_ShippingOption_ShippingType" json:"type,omitempty"`
-	Regions  []CountryCode                       `protobuf:"varint,3,rep,packed,name=regions,enum=CountryCode" json:"regions,omitempty"`
-	Services []*Listing_ShippingOption_Service   `protobuf:"bytes,5,rep,name=services" json:"services,omitempty"`
+	Name                 string                              `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Type                 Listing_ShippingOption_ShippingType `protobuf:"varint,2,opt,name=type,enum=Listing_ShippingOption_ShippingType" json:"type,omitempty"`
+	Regions              []CountryCode                       `protobuf:"varint,3,rep,packed,name=regions,enum=CountryCode" json:"regions,omitempty"`
+	Services             []*Listing_ShippingOption_Service   `protobuf:"bytes,5,rep,name=services" json:"services,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                            `json:"-"`
+	XXX_unrecognized     []byte                              `json:"-"`
+	XXX_sizecache        int32                               `json:"-"`
 }
 
-func (m *Listing_ShippingOption) Reset()                    { *m = Listing_ShippingOption{} }
-func (m *Listing_ShippingOption) String() string            { return proto.CompactTextString(m) }
-func (*Listing_ShippingOption) ProtoMessage()               {}
-func (*Listing_ShippingOption) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 2} }
+func (m *Listing_ShippingOption) Reset()         { *m = Listing_ShippingOption{} }
+func (m *Listing_ShippingOption) String() string { return proto.CompactTextString(m) }
+func (*Listing_ShippingOption) ProtoMessage()    {}
+func (*Listing_ShippingOption) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 2}
+}
+func (m *Listing_ShippingOption) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_ShippingOption.Unmarshal(m, b)
+}
+func (m *Listing_ShippingOption) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_ShippingOption.Marshal(b, m, deterministic)
+}
+func (dst *Listing_ShippingOption) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_ShippingOption.Merge(dst, src)
+}
+func (m *Listing_ShippingOption) XXX_Size() int {
+	return xxx_messageInfo_Listing_ShippingOption.Size(m)
+}
+func (m *Listing_ShippingOption) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_ShippingOption.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_ShippingOption proto.InternalMessageInfo
 
 func (m *Listing_ShippingOption) GetName() string {
 	if m != nil {
@@ -725,18 +931,38 @@ func (m *Listing_ShippingOption) GetServices() []*Listing_ShippingOption_Service
 }
 
 type Listing_ShippingOption_Service struct {
-	Name                string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Price               uint64 `protobuf:"varint,2,opt,name=price" json:"price,omitempty"`
-	EstimatedDelivery   string `protobuf:"bytes,3,opt,name=estimatedDelivery" json:"estimatedDelivery,omitempty"`
-	AdditionalItemPrice uint64 `protobuf:"varint,4,opt,name=additionalItemPrice" json:"additionalItemPrice,omitempty"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Price                uint64   `protobuf:"varint,2,opt,name=price" json:"price,omitempty"`
+	EstimatedDelivery    string   `protobuf:"bytes,3,opt,name=estimatedDelivery" json:"estimatedDelivery,omitempty"`
+	AdditionalItemPrice  uint64   `protobuf:"varint,4,opt,name=additionalItemPrice" json:"additionalItemPrice,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Listing_ShippingOption_Service) Reset()         { *m = Listing_ShippingOption_Service{} }
 func (m *Listing_ShippingOption_Service) String() string { return proto.CompactTextString(m) }
 func (*Listing_ShippingOption_Service) ProtoMessage()    {}
 func (*Listing_ShippingOption_Service) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{1, 2, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 2, 0}
 }
+func (m *Listing_ShippingOption_Service) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_ShippingOption_Service.Unmarshal(m, b)
+}
+func (m *Listing_ShippingOption_Service) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_ShippingOption_Service.Marshal(b, m, deterministic)
+}
+func (dst *Listing_ShippingOption_Service) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_ShippingOption_Service.Merge(dst, src)
+}
+func (m *Listing_ShippingOption_Service) XXX_Size() int {
+	return xxx_messageInfo_Listing_ShippingOption_Service.Size(m)
+}
+func (m *Listing_ShippingOption_Service) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_ShippingOption_Service.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_ShippingOption_Service proto.InternalMessageInfo
 
 func (m *Listing_ShippingOption_Service) GetName() string {
 	if m != nil {
@@ -767,16 +993,38 @@ func (m *Listing_ShippingOption_Service) GetAdditionalItemPrice() uint64 {
 }
 
 type Listing_Tax struct {
-	TaxType     string        `protobuf:"bytes,1,opt,name=taxType" json:"taxType,omitempty"`
-	TaxRegions  []CountryCode `protobuf:"varint,2,rep,packed,name=taxRegions,enum=CountryCode" json:"taxRegions,omitempty"`
-	TaxShipping bool          `protobuf:"varint,3,opt,name=taxShipping" json:"taxShipping,omitempty"`
-	Percentage  float32       `protobuf:"fixed32,4,opt,name=percentage" json:"percentage,omitempty"`
+	TaxType              string        `protobuf:"bytes,1,opt,name=taxType" json:"taxType,omitempty"`
+	TaxRegions           []CountryCode `protobuf:"varint,2,rep,packed,name=taxRegions,enum=CountryCode" json:"taxRegions,omitempty"`
+	TaxShipping          bool          `protobuf:"varint,3,opt,name=taxShipping" json:"taxShipping,omitempty"`
+	Percentage           float32       `protobuf:"fixed32,4,opt,name=percentage" json:"percentage,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
-func (m *Listing_Tax) Reset()                    { *m = Listing_Tax{} }
-func (m *Listing_Tax) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Tax) ProtoMessage()               {}
-func (*Listing_Tax) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 3} }
+func (m *Listing_Tax) Reset()         { *m = Listing_Tax{} }
+func (m *Listing_Tax) String() string { return proto.CompactTextString(m) }
+func (*Listing_Tax) ProtoMessage()    {}
+func (*Listing_Tax) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 3}
+}
+func (m *Listing_Tax) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Tax.Unmarshal(m, b)
+}
+func (m *Listing_Tax) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Tax.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Tax) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Tax.Merge(dst, src)
+}
+func (m *Listing_Tax) XXX_Size() int {
+	return xxx_messageInfo_Listing_Tax.Size(m)
+}
+func (m *Listing_Tax) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Tax.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Tax proto.InternalMessageInfo
 
 func (m *Listing_Tax) GetTaxType() string {
 	if m != nil {
@@ -815,13 +1063,35 @@ type Listing_Coupon struct {
 	// Types that are valid to be assigned to Discount:
 	//	*Listing_Coupon_PercentDiscount
 	//	*Listing_Coupon_PriceDiscount
-	Discount isListing_Coupon_Discount `protobuf_oneof:"discount"`
+	Discount             isListing_Coupon_Discount `protobuf_oneof:"discount"`
+	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
+	XXX_unrecognized     []byte                    `json:"-"`
+	XXX_sizecache        int32                     `json:"-"`
 }
 
-func (m *Listing_Coupon) Reset()                    { *m = Listing_Coupon{} }
-func (m *Listing_Coupon) String() string            { return proto.CompactTextString(m) }
-func (*Listing_Coupon) ProtoMessage()               {}
-func (*Listing_Coupon) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{1, 4} }
+func (m *Listing_Coupon) Reset()         { *m = Listing_Coupon{} }
+func (m *Listing_Coupon) String() string { return proto.CompactTextString(m) }
+func (*Listing_Coupon) ProtoMessage()    {}
+func (*Listing_Coupon) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{1, 4}
+}
+func (m *Listing_Coupon) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Listing_Coupon.Unmarshal(m, b)
+}
+func (m *Listing_Coupon) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Listing_Coupon.Marshal(b, m, deterministic)
+}
+func (dst *Listing_Coupon) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Listing_Coupon.Merge(dst, src)
+}
+func (m *Listing_Coupon) XXX_Size() int {
+	return xxx_messageInfo_Listing_Coupon.Size(m)
+}
+func (m *Listing_Coupon) XXX_DiscardUnknown() {
+	xxx_messageInfo_Listing_Coupon.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Listing_Coupon proto.InternalMessageInfo
 
 type isListing_Coupon_Code interface {
 	isListing_Coupon_Code()
@@ -976,11 +1246,11 @@ func _Listing_Coupon_OneofSizer(msg proto.Message) (n int) {
 	// code
 	switch x := m.Code.(type) {
 	case *Listing_Coupon_Hash:
-		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(len(x.Hash)))
 		n += len(x.Hash)
 	case *Listing_Coupon_DiscountCode:
-		n += proto.SizeVarint(3<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(len(x.DiscountCode)))
 		n += len(x.DiscountCode)
 	case nil:
@@ -990,10 +1260,10 @@ func _Listing_Coupon_OneofSizer(msg proto.Message) (n int) {
 	// discount
 	switch x := m.Discount.(type) {
 	case *Listing_Coupon_PercentDiscount:
-		n += proto.SizeVarint(5<<3 | proto.WireFixed32)
+		n += 1 // tag and wire
 		n += 4
 	case *Listing_Coupon_PriceDiscount:
-		n += proto.SizeVarint(6<<3 | proto.WireVarint)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(x.PriceDiscount))
 	case nil:
 	default:
@@ -1003,22 +1273,44 @@ func _Listing_Coupon_OneofSizer(msg proto.Message) (n int) {
 }
 
 type Order struct {
-	RefundAddress        string                     `protobuf:"bytes,1,opt,name=refundAddress" json:"refundAddress,omitempty"`
-	RefundFee            uint64                     `protobuf:"varint,2,opt,name=refundFee" json:"refundFee,omitempty"`
-	Shipping             *Order_Shipping            `protobuf:"bytes,3,opt,name=shipping" json:"shipping,omitempty"`
-	BuyerID              *ID                        `protobuf:"bytes,4,opt,name=buyerID" json:"buyerID,omitempty"`
-	Timestamp            *google_protobuf.Timestamp `protobuf:"bytes,5,opt,name=timestamp" json:"timestamp,omitempty"`
-	Items                []*Order_Item              `protobuf:"bytes,6,rep,name=items" json:"items,omitempty"`
-	Payment              *Order_Payment             `protobuf:"bytes,7,opt,name=payment" json:"payment,omitempty"`
-	RatingKeys           [][]byte                   `protobuf:"bytes,8,rep,name=ratingKeys,proto3" json:"ratingKeys,omitempty"`
-	AlternateContactInfo string                     `protobuf:"bytes,9,opt,name=alternateContactInfo" json:"alternateContactInfo,omitempty"`
-	Version              uint32                     `protobuf:"varint,10,opt,name=version" json:"version,omitempty"`
+	RefundAddress        string               `protobuf:"bytes,1,opt,name=refundAddress" json:"refundAddress,omitempty"`
+	RefundFee            uint64               `protobuf:"varint,2,opt,name=refundFee" json:"refundFee,omitempty"`
+	Shipping             *Order_Shipping      `protobuf:"bytes,3,opt,name=shipping" json:"shipping,omitempty"`
+	BuyerID              *ID                  `protobuf:"bytes,4,opt,name=buyerID" json:"buyerID,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,5,opt,name=timestamp" json:"timestamp,omitempty"`
+	Items                []*Order_Item        `protobuf:"bytes,6,rep,name=items" json:"items,omitempty"`
+	Payment              *Order_Payment       `protobuf:"bytes,7,opt,name=payment" json:"payment,omitempty"`
+	RatingKeys           [][]byte             `protobuf:"bytes,8,rep,name=ratingKeys,proto3" json:"ratingKeys,omitempty"`
+	AlternateContactInfo string               `protobuf:"bytes,9,opt,name=alternateContactInfo" json:"alternateContactInfo,omitempty"`
+	Version              uint32               `protobuf:"varint,10,opt,name=version" json:"version,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *Order) Reset()                    { *m = Order{} }
-func (m *Order) String() string            { return proto.CompactTextString(m) }
-func (*Order) ProtoMessage()               {}
-func (*Order) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2} }
+func (m *Order) Reset()         { *m = Order{} }
+func (m *Order) String() string { return proto.CompactTextString(m) }
+func (*Order) ProtoMessage()    {}
+func (*Order) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2}
+}
+func (m *Order) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order.Unmarshal(m, b)
+}
+func (m *Order) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order.Marshal(b, m, deterministic)
+}
+func (dst *Order) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order.Merge(dst, src)
+}
+func (m *Order) XXX_Size() int {
+	return xxx_messageInfo_Order.Size(m)
+}
+func (m *Order) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order proto.InternalMessageInfo
 
 func (m *Order) GetRefundAddress() string {
 	if m != nil {
@@ -1048,7 +1340,7 @@ func (m *Order) GetBuyerID() *ID {
 	return nil
 }
 
-func (m *Order) GetTimestamp() *google_protobuf.Timestamp {
+func (m *Order) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1091,19 +1383,41 @@ func (m *Order) GetVersion() uint32 {
 }
 
 type Order_Shipping struct {
-	ShipTo       string      `protobuf:"bytes,1,opt,name=shipTo" json:"shipTo,omitempty"`
-	Address      string      `protobuf:"bytes,2,opt,name=address" json:"address,omitempty"`
-	City         string      `protobuf:"bytes,3,opt,name=city" json:"city,omitempty"`
-	State        string      `protobuf:"bytes,4,opt,name=state" json:"state,omitempty"`
-	PostalCode   string      `protobuf:"bytes,5,opt,name=postalCode" json:"postalCode,omitempty"`
-	Country      CountryCode `protobuf:"varint,6,opt,name=country,enum=CountryCode" json:"country,omitempty"`
-	AddressNotes string      `protobuf:"bytes,7,opt,name=addressNotes" json:"addressNotes,omitempty"`
+	ShipTo               string      `protobuf:"bytes,1,opt,name=shipTo" json:"shipTo,omitempty"`
+	Address              string      `protobuf:"bytes,2,opt,name=address" json:"address,omitempty"`
+	City                 string      `protobuf:"bytes,3,opt,name=city" json:"city,omitempty"`
+	State                string      `protobuf:"bytes,4,opt,name=state" json:"state,omitempty"`
+	PostalCode           string      `protobuf:"bytes,5,opt,name=postalCode" json:"postalCode,omitempty"`
+	Country              CountryCode `protobuf:"varint,6,opt,name=country,enum=CountryCode" json:"country,omitempty"`
+	AddressNotes         string      `protobuf:"bytes,7,opt,name=addressNotes" json:"addressNotes,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *Order_Shipping) Reset()                    { *m = Order_Shipping{} }
-func (m *Order_Shipping) String() string            { return proto.CompactTextString(m) }
-func (*Order_Shipping) ProtoMessage()               {}
-func (*Order_Shipping) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 0} }
+func (m *Order_Shipping) Reset()         { *m = Order_Shipping{} }
+func (m *Order_Shipping) String() string { return proto.CompactTextString(m) }
+func (*Order_Shipping) ProtoMessage()    {}
+func (*Order_Shipping) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 0}
+}
+func (m *Order_Shipping) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order_Shipping.Unmarshal(m, b)
+}
+func (m *Order_Shipping) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order_Shipping.Marshal(b, m, deterministic)
+}
+func (dst *Order_Shipping) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order_Shipping.Merge(dst, src)
+}
+func (m *Order_Shipping) XXX_Size() int {
+	return xxx_messageInfo_Order_Shipping.Size(m)
+}
+func (m *Order_Shipping) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order_Shipping.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order_Shipping proto.InternalMessageInfo
 
 func (m *Order_Shipping) GetShipTo() string {
 	if m != nil {
@@ -1155,18 +1469,40 @@ func (m *Order_Shipping) GetAddressNotes() string {
 }
 
 type Order_Item struct {
-	ListingHash    string                     `protobuf:"bytes,1,opt,name=listingHash" json:"listingHash,omitempty"`
-	Quantity       uint32                     `protobuf:"varint,2,opt,name=quantity" json:"quantity,omitempty"`
-	Options        []*Order_Item_Option       `protobuf:"bytes,3,rep,name=options" json:"options,omitempty"`
-	ShippingOption *Order_Item_ShippingOption `protobuf:"bytes,4,opt,name=shippingOption" json:"shippingOption,omitempty"`
-	Memo           string                     `protobuf:"bytes,5,opt,name=memo" json:"memo,omitempty"`
-	CouponCodes    []string                   `protobuf:"bytes,6,rep,name=couponCodes" json:"couponCodes,omitempty"`
+	ListingHash          string                     `protobuf:"bytes,1,opt,name=listingHash" json:"listingHash,omitempty"`
+	Quantity             uint32                     `protobuf:"varint,2,opt,name=quantity" json:"quantity,omitempty"`
+	Options              []*Order_Item_Option       `protobuf:"bytes,3,rep,name=options" json:"options,omitempty"`
+	ShippingOption       *Order_Item_ShippingOption `protobuf:"bytes,4,opt,name=shippingOption" json:"shippingOption,omitempty"`
+	Memo                 string                     `protobuf:"bytes,5,opt,name=memo" json:"memo,omitempty"`
+	CouponCodes          []string                   `protobuf:"bytes,6,rep,name=couponCodes" json:"couponCodes,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
 }
 
-func (m *Order_Item) Reset()                    { *m = Order_Item{} }
-func (m *Order_Item) String() string            { return proto.CompactTextString(m) }
-func (*Order_Item) ProtoMessage()               {}
-func (*Order_Item) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 1} }
+func (m *Order_Item) Reset()         { *m = Order_Item{} }
+func (m *Order_Item) String() string { return proto.CompactTextString(m) }
+func (*Order_Item) ProtoMessage()    {}
+func (*Order_Item) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 1}
+}
+func (m *Order_Item) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order_Item.Unmarshal(m, b)
+}
+func (m *Order_Item) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order_Item.Marshal(b, m, deterministic)
+}
+func (dst *Order_Item) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order_Item.Merge(dst, src)
+}
+func (m *Order_Item) XXX_Size() int {
+	return xxx_messageInfo_Order_Item.Size(m)
+}
+func (m *Order_Item) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order_Item.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order_Item proto.InternalMessageInfo
 
 func (m *Order_Item) GetListingHash() string {
 	if m != nil {
@@ -1211,14 +1547,36 @@ func (m *Order_Item) GetCouponCodes() []string {
 }
 
 type Order_Item_Option struct {
-	Name  string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Value string `protobuf:"bytes,2,opt,name=value" json:"value,omitempty"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Value                string   `protobuf:"bytes,2,opt,name=value" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Order_Item_Option) Reset()                    { *m = Order_Item_Option{} }
-func (m *Order_Item_Option) String() string            { return proto.CompactTextString(m) }
-func (*Order_Item_Option) ProtoMessage()               {}
-func (*Order_Item_Option) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 1, 0} }
+func (m *Order_Item_Option) Reset()         { *m = Order_Item_Option{} }
+func (m *Order_Item_Option) String() string { return proto.CompactTextString(m) }
+func (*Order_Item_Option) ProtoMessage()    {}
+func (*Order_Item_Option) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 1, 0}
+}
+func (m *Order_Item_Option) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order_Item_Option.Unmarshal(m, b)
+}
+func (m *Order_Item_Option) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order_Item_Option.Marshal(b, m, deterministic)
+}
+func (dst *Order_Item_Option) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order_Item_Option.Merge(dst, src)
+}
+func (m *Order_Item_Option) XXX_Size() int {
+	return xxx_messageInfo_Order_Item_Option.Size(m)
+}
+func (m *Order_Item_Option) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order_Item_Option.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order_Item_Option proto.InternalMessageInfo
 
 func (m *Order_Item_Option) GetName() string {
 	if m != nil {
@@ -1235,14 +1593,36 @@ func (m *Order_Item_Option) GetValue() string {
 }
 
 type Order_Item_ShippingOption struct {
-	Name    string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
-	Service string `protobuf:"bytes,2,opt,name=service" json:"service,omitempty"`
+	Name                 string   `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Service              string   `protobuf:"bytes,2,opt,name=service" json:"service,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Order_Item_ShippingOption) Reset()                    { *m = Order_Item_ShippingOption{} }
-func (m *Order_Item_ShippingOption) String() string            { return proto.CompactTextString(m) }
-func (*Order_Item_ShippingOption) ProtoMessage()               {}
-func (*Order_Item_ShippingOption) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 1, 1} }
+func (m *Order_Item_ShippingOption) Reset()         { *m = Order_Item_ShippingOption{} }
+func (m *Order_Item_ShippingOption) String() string { return proto.CompactTextString(m) }
+func (*Order_Item_ShippingOption) ProtoMessage()    {}
+func (*Order_Item_ShippingOption) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 1, 1}
+}
+func (m *Order_Item_ShippingOption) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order_Item_ShippingOption.Unmarshal(m, b)
+}
+func (m *Order_Item_ShippingOption) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order_Item_ShippingOption.Marshal(b, m, deterministic)
+}
+func (dst *Order_Item_ShippingOption) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order_Item_ShippingOption.Merge(dst, src)
+}
+func (m *Order_Item_ShippingOption) XXX_Size() int {
+	return xxx_messageInfo_Order_Item_ShippingOption.Size(m)
+}
+func (m *Order_Item_ShippingOption) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order_Item_ShippingOption.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order_Item_ShippingOption proto.InternalMessageInfo
 
 func (m *Order_Item_ShippingOption) GetName() string {
 	if m != nil {
@@ -1259,19 +1639,41 @@ func (m *Order_Item_ShippingOption) GetService() string {
 }
 
 type Order_Payment struct {
-	Method       Order_Payment_Method `protobuf:"varint,1,opt,name=method,enum=Order_Payment_Method" json:"method,omitempty"`
-	Moderator    string               `protobuf:"bytes,2,opt,name=moderator" json:"moderator,omitempty"`
-	Amount       uint64               `protobuf:"varint,3,opt,name=amount" json:"amount,omitempty"`
-	Chaincode    string               `protobuf:"bytes,4,opt,name=chaincode" json:"chaincode,omitempty"`
-	Address      string               `protobuf:"bytes,5,opt,name=address" json:"address,omitempty"`
-	RedeemScript string               `protobuf:"bytes,6,opt,name=redeemScript" json:"redeemScript,omitempty"`
-	ModeratorKey []byte               `protobuf:"bytes,7,opt,name=moderatorKey,proto3" json:"moderatorKey,omitempty"`
+	Method               Order_Payment_Method `protobuf:"varint,1,opt,name=method,enum=Order_Payment_Method" json:"method,omitempty"`
+	Moderator            string               `protobuf:"bytes,2,opt,name=moderator" json:"moderator,omitempty"`
+	Amount               uint64               `protobuf:"varint,3,opt,name=amount" json:"amount,omitempty"`
+	Chaincode            string               `protobuf:"bytes,4,opt,name=chaincode" json:"chaincode,omitempty"`
+	Address              string               `protobuf:"bytes,5,opt,name=address" json:"address,omitempty"`
+	RedeemScript         string               `protobuf:"bytes,6,opt,name=redeemScript" json:"redeemScript,omitempty"`
+	ModeratorKey         []byte               `protobuf:"bytes,7,opt,name=moderatorKey,proto3" json:"moderatorKey,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *Order_Payment) Reset()                    { *m = Order_Payment{} }
-func (m *Order_Payment) String() string            { return proto.CompactTextString(m) }
-func (*Order_Payment) ProtoMessage()               {}
-func (*Order_Payment) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{2, 2} }
+func (m *Order_Payment) Reset()         { *m = Order_Payment{} }
+func (m *Order_Payment) String() string { return proto.CompactTextString(m) }
+func (*Order_Payment) ProtoMessage()    {}
+func (*Order_Payment) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{2, 2}
+}
+func (m *Order_Payment) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Order_Payment.Unmarshal(m, b)
+}
+func (m *Order_Payment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Order_Payment.Marshal(b, m, deterministic)
+}
+func (dst *Order_Payment) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Order_Payment.Merge(dst, src)
+}
+func (m *Order_Payment) XXX_Size() int {
+	return xxx_messageInfo_Order_Payment.Size(m)
+}
+func (m *Order_Payment) XXX_DiscardUnknown() {
+	xxx_messageInfo_Order_Payment.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Order_Payment proto.InternalMessageInfo
 
 func (m *Order_Payment) GetMethod() Order_Payment_Method {
 	if m != nil {
@@ -1323,18 +1725,40 @@ func (m *Order_Payment) GetModeratorKey() []byte {
 }
 
 type OrderConfirmation struct {
-	OrderID   string                     `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
-	Timestamp *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
+	OrderID   string               `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
+	Timestamp *timestamp.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
 	// Direct payments only
-	PaymentAddress   string             `protobuf:"bytes,3,opt,name=paymentAddress" json:"paymentAddress,omitempty"`
-	RequestedAmount  uint64             `protobuf:"varint,4,opt,name=requestedAmount" json:"requestedAmount,omitempty"`
-	RatingSignatures []*RatingSignature `protobuf:"bytes,5,rep,name=ratingSignatures" json:"ratingSignatures,omitempty"`
+	PaymentAddress       string             `protobuf:"bytes,3,opt,name=paymentAddress" json:"paymentAddress,omitempty"`
+	RequestedAmount      uint64             `protobuf:"varint,4,opt,name=requestedAmount" json:"requestedAmount,omitempty"`
+	RatingSignatures     []*RatingSignature `protobuf:"bytes,5,rep,name=ratingSignatures" json:"ratingSignatures,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
-func (m *OrderConfirmation) Reset()                    { *m = OrderConfirmation{} }
-func (m *OrderConfirmation) String() string            { return proto.CompactTextString(m) }
-func (*OrderConfirmation) ProtoMessage()               {}
-func (*OrderConfirmation) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{3} }
+func (m *OrderConfirmation) Reset()         { *m = OrderConfirmation{} }
+func (m *OrderConfirmation) String() string { return proto.CompactTextString(m) }
+func (*OrderConfirmation) ProtoMessage()    {}
+func (*OrderConfirmation) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{3}
+}
+func (m *OrderConfirmation) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderConfirmation.Unmarshal(m, b)
+}
+func (m *OrderConfirmation) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderConfirmation.Marshal(b, m, deterministic)
+}
+func (dst *OrderConfirmation) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderConfirmation.Merge(dst, src)
+}
+func (m *OrderConfirmation) XXX_Size() int {
+	return xxx_messageInfo_OrderConfirmation.Size(m)
+}
+func (m *OrderConfirmation) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderConfirmation.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderConfirmation proto.InternalMessageInfo
 
 func (m *OrderConfirmation) GetOrderID() string {
 	if m != nil {
@@ -1343,7 +1767,7 @@ func (m *OrderConfirmation) GetOrderID() string {
 	return ""
 }
 
-func (m *OrderConfirmation) GetTimestamp() *google_protobuf.Timestamp {
+func (m *OrderConfirmation) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1372,15 +1796,37 @@ func (m *OrderConfirmation) GetRatingSignatures() []*RatingSignature {
 }
 
 type OrderReject struct {
-	OrderID   string                     `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
-	Timestamp *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
-	Sigs      []*BitcoinSignature        `protobuf:"bytes,3,rep,name=sigs" json:"sigs,omitempty"`
+	OrderID              string               `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
+	Sigs                 []*BitcoinSignature  `protobuf:"bytes,3,rep,name=sigs" json:"sigs,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *OrderReject) Reset()                    { *m = OrderReject{} }
-func (m *OrderReject) String() string            { return proto.CompactTextString(m) }
-func (*OrderReject) ProtoMessage()               {}
-func (*OrderReject) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{4} }
+func (m *OrderReject) Reset()         { *m = OrderReject{} }
+func (m *OrderReject) String() string { return proto.CompactTextString(m) }
+func (*OrderReject) ProtoMessage()    {}
+func (*OrderReject) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{4}
+}
+func (m *OrderReject) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderReject.Unmarshal(m, b)
+}
+func (m *OrderReject) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderReject.Marshal(b, m, deterministic)
+}
+func (dst *OrderReject) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderReject.Merge(dst, src)
+}
+func (m *OrderReject) XXX_Size() int {
+	return xxx_messageInfo_OrderReject.Size(m)
+}
+func (m *OrderReject) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderReject.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderReject proto.InternalMessageInfo
 
 func (m *OrderReject) GetOrderID() string {
 	if m != nil {
@@ -1389,7 +1835,7 @@ func (m *OrderReject) GetOrderID() string {
 	return ""
 }
 
-func (m *OrderReject) GetTimestamp() *google_protobuf.Timestamp {
+func (m *OrderReject) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1404,14 +1850,36 @@ func (m *OrderReject) GetSigs() []*BitcoinSignature {
 }
 
 type RatingSignature struct {
-	Metadata  *RatingSignature_TransactionMetadata `protobuf:"bytes,1,opt,name=metadata" json:"metadata,omitempty"`
-	Signature []byte                               `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	Metadata             *RatingSignature_TransactionMetadata `protobuf:"bytes,1,opt,name=metadata" json:"metadata,omitempty"`
+	Signature            []byte                               `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                             `json:"-"`
+	XXX_unrecognized     []byte                               `json:"-"`
+	XXX_sizecache        int32                                `json:"-"`
 }
 
-func (m *RatingSignature) Reset()                    { *m = RatingSignature{} }
-func (m *RatingSignature) String() string            { return proto.CompactTextString(m) }
-func (*RatingSignature) ProtoMessage()               {}
-func (*RatingSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{5} }
+func (m *RatingSignature) Reset()         { *m = RatingSignature{} }
+func (m *RatingSignature) String() string { return proto.CompactTextString(m) }
+func (*RatingSignature) ProtoMessage()    {}
+func (*RatingSignature) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{5}
+}
+func (m *RatingSignature) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RatingSignature.Unmarshal(m, b)
+}
+func (m *RatingSignature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RatingSignature.Marshal(b, m, deterministic)
+}
+func (dst *RatingSignature) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RatingSignature.Merge(dst, src)
+}
+func (m *RatingSignature) XXX_Size() int {
+	return xxx_messageInfo_RatingSignature.Size(m)
+}
+func (m *RatingSignature) XXX_DiscardUnknown() {
+	xxx_messageInfo_RatingSignature.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RatingSignature proto.InternalMessageInfo
 
 func (m *RatingSignature) GetMetadata() *RatingSignature_TransactionMetadata {
 	if m != nil {
@@ -1428,19 +1896,39 @@ func (m *RatingSignature) GetSignature() []byte {
 }
 
 type RatingSignature_TransactionMetadata struct {
-	ListingSlug  string                                     `protobuf:"bytes,1,opt,name=listingSlug" json:"listingSlug,omitempty"`
-	RatingKey    []byte                                     `protobuf:"bytes,2,opt,name=ratingKey,proto3" json:"ratingKey,omitempty"`
-	ModeratorKey []byte                                     `protobuf:"bytes,3,opt,name=moderatorKey,proto3" json:"moderatorKey,omitempty"`
-	ListingTitle string                                     `protobuf:"bytes,4,opt,name=listingTitle" json:"listingTitle,omitempty"`
-	Thumbnail    *RatingSignature_TransactionMetadata_Image `protobuf:"bytes,5,opt,name=thumbnail" json:"thumbnail,omitempty"`
+	ListingSlug          string                                     `protobuf:"bytes,1,opt,name=listingSlug" json:"listingSlug,omitempty"`
+	RatingKey            []byte                                     `protobuf:"bytes,2,opt,name=ratingKey,proto3" json:"ratingKey,omitempty"`
+	ModeratorKey         []byte                                     `protobuf:"bytes,3,opt,name=moderatorKey,proto3" json:"moderatorKey,omitempty"`
+	ListingTitle         string                                     `protobuf:"bytes,4,opt,name=listingTitle" json:"listingTitle,omitempty"`
+	Thumbnail            *RatingSignature_TransactionMetadata_Image `protobuf:"bytes,5,opt,name=thumbnail" json:"thumbnail,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                                   `json:"-"`
+	XXX_unrecognized     []byte                                     `json:"-"`
+	XXX_sizecache        int32                                      `json:"-"`
 }
 
 func (m *RatingSignature_TransactionMetadata) Reset()         { *m = RatingSignature_TransactionMetadata{} }
 func (m *RatingSignature_TransactionMetadata) String() string { return proto.CompactTextString(m) }
 func (*RatingSignature_TransactionMetadata) ProtoMessage()    {}
 func (*RatingSignature_TransactionMetadata) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{5, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{5, 0}
 }
+func (m *RatingSignature_TransactionMetadata) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata.Unmarshal(m, b)
+}
+func (m *RatingSignature_TransactionMetadata) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata.Marshal(b, m, deterministic)
+}
+func (dst *RatingSignature_TransactionMetadata) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RatingSignature_TransactionMetadata.Merge(dst, src)
+}
+func (m *RatingSignature_TransactionMetadata) XXX_Size() int {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata.Size(m)
+}
+func (m *RatingSignature_TransactionMetadata) XXX_DiscardUnknown() {
+	xxx_messageInfo_RatingSignature_TransactionMetadata.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RatingSignature_TransactionMetadata proto.InternalMessageInfo
 
 func (m *RatingSignature_TransactionMetadata) GetListingSlug() string {
 	if m != nil {
@@ -1478,11 +1966,14 @@ func (m *RatingSignature_TransactionMetadata) GetThumbnail() *RatingSignature_Tr
 }
 
 type RatingSignature_TransactionMetadata_Image struct {
-	Tiny     string `protobuf:"bytes,1,opt,name=tiny" json:"tiny,omitempty"`
-	Small    string `protobuf:"bytes,2,opt,name=small" json:"small,omitempty"`
-	Medium   string `protobuf:"bytes,3,opt,name=medium" json:"medium,omitempty"`
-	Large    string `protobuf:"bytes,4,opt,name=large" json:"large,omitempty"`
-	Original string `protobuf:"bytes,5,opt,name=original" json:"original,omitempty"`
+	Tiny                 string   `protobuf:"bytes,1,opt,name=tiny" json:"tiny,omitempty"`
+	Small                string   `protobuf:"bytes,2,opt,name=small" json:"small,omitempty"`
+	Medium               string   `protobuf:"bytes,3,opt,name=medium" json:"medium,omitempty"`
+	Large                string   `protobuf:"bytes,4,opt,name=large" json:"large,omitempty"`
+	Original             string   `protobuf:"bytes,5,opt,name=original" json:"original,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *RatingSignature_TransactionMetadata_Image) Reset() {
@@ -1491,8 +1982,25 @@ func (m *RatingSignature_TransactionMetadata_Image) Reset() {
 func (m *RatingSignature_TransactionMetadata_Image) String() string { return proto.CompactTextString(m) }
 func (*RatingSignature_TransactionMetadata_Image) ProtoMessage()    {}
 func (*RatingSignature_TransactionMetadata_Image) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{5, 0, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{5, 0, 0}
 }
+func (m *RatingSignature_TransactionMetadata_Image) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata_Image.Unmarshal(m, b)
+}
+func (m *RatingSignature_TransactionMetadata_Image) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata_Image.Marshal(b, m, deterministic)
+}
+func (dst *RatingSignature_TransactionMetadata_Image) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RatingSignature_TransactionMetadata_Image.Merge(dst, src)
+}
+func (m *RatingSignature_TransactionMetadata_Image) XXX_Size() int {
+	return xxx_messageInfo_RatingSignature_TransactionMetadata_Image.Size(m)
+}
+func (m *RatingSignature_TransactionMetadata_Image) XXX_DiscardUnknown() {
+	xxx_messageInfo_RatingSignature_TransactionMetadata_Image.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RatingSignature_TransactionMetadata_Image proto.InternalMessageInfo
 
 func (m *RatingSignature_TransactionMetadata_Image) GetTiny() string {
 	if m != nil {
@@ -1530,14 +2038,36 @@ func (m *RatingSignature_TransactionMetadata_Image) GetOriginal() string {
 }
 
 type BitcoinSignature struct {
-	InputIndex uint32 `protobuf:"varint,1,opt,name=inputIndex" json:"inputIndex,omitempty"`
-	Signature  []byte `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	InputIndex           uint32   `protobuf:"varint,1,opt,name=inputIndex" json:"inputIndex,omitempty"`
+	Signature            []byte   `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *BitcoinSignature) Reset()                    { *m = BitcoinSignature{} }
-func (m *BitcoinSignature) String() string            { return proto.CompactTextString(m) }
-func (*BitcoinSignature) ProtoMessage()               {}
-func (*BitcoinSignature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{6} }
+func (m *BitcoinSignature) Reset()         { *m = BitcoinSignature{} }
+func (m *BitcoinSignature) String() string { return proto.CompactTextString(m) }
+func (*BitcoinSignature) ProtoMessage()    {}
+func (*BitcoinSignature) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{6}
+}
+func (m *BitcoinSignature) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BitcoinSignature.Unmarshal(m, b)
+}
+func (m *BitcoinSignature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BitcoinSignature.Marshal(b, m, deterministic)
+}
+func (dst *BitcoinSignature) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BitcoinSignature.Merge(dst, src)
+}
+func (m *BitcoinSignature) XXX_Size() int {
+	return xxx_messageInfo_BitcoinSignature.Size(m)
+}
+func (m *BitcoinSignature) XXX_DiscardUnknown() {
+	xxx_messageInfo_BitcoinSignature.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BitcoinSignature proto.InternalMessageInfo
 
 func (m *BitcoinSignature) GetInputIndex() uint32 {
 	if m != nil {
@@ -1554,23 +2084,45 @@ func (m *BitcoinSignature) GetSignature() []byte {
 }
 
 type OrderFulfillment struct {
-	OrderId   string                     `protobuf:"bytes,1,opt,name=orderId" json:"orderId,omitempty"`
-	Slug      string                     `protobuf:"bytes,2,opt,name=slug" json:"slug,omitempty"`
-	Timestamp *google_protobuf.Timestamp `protobuf:"bytes,3,opt,name=timestamp" json:"timestamp,omitempty"`
+	OrderId   string               `protobuf:"bytes,1,opt,name=orderId" json:"orderId,omitempty"`
+	Slug      string               `protobuf:"bytes,2,opt,name=slug" json:"slug,omitempty"`
+	Timestamp *timestamp.Timestamp `protobuf:"bytes,3,opt,name=timestamp" json:"timestamp,omitempty"`
 	// Physical goods only
 	PhysicalDelivery []*OrderFulfillment_PhysicalDelivery `protobuf:"bytes,4,rep,name=physicalDelivery" json:"physicalDelivery,omitempty"`
 	// Digital goods only
 	DigitalDelivery []*OrderFulfillment_DigitalDelivery `protobuf:"bytes,5,rep,name=digitalDelivery" json:"digitalDelivery,omitempty"`
 	// Moderated payments only
-	Payout          *OrderFulfillment_Payout `protobuf:"bytes,6,opt,name=payout" json:"payout,omitempty"`
-	RatingSignature *RatingSignature         `protobuf:"bytes,7,opt,name=ratingSignature" json:"ratingSignature,omitempty"`
-	Note            string                   `protobuf:"bytes,8,opt,name=note" json:"note,omitempty"`
+	Payout               *OrderFulfillment_Payout `protobuf:"bytes,6,opt,name=payout" json:"payout,omitempty"`
+	RatingSignature      *RatingSignature         `protobuf:"bytes,7,opt,name=ratingSignature" json:"ratingSignature,omitempty"`
+	Note                 string                   `protobuf:"bytes,8,opt,name=note" json:"note,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
+	XXX_unrecognized     []byte                   `json:"-"`
+	XXX_sizecache        int32                    `json:"-"`
 }
 
-func (m *OrderFulfillment) Reset()                    { *m = OrderFulfillment{} }
-func (m *OrderFulfillment) String() string            { return proto.CompactTextString(m) }
-func (*OrderFulfillment) ProtoMessage()               {}
-func (*OrderFulfillment) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{7} }
+func (m *OrderFulfillment) Reset()         { *m = OrderFulfillment{} }
+func (m *OrderFulfillment) String() string { return proto.CompactTextString(m) }
+func (*OrderFulfillment) ProtoMessage()    {}
+func (*OrderFulfillment) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{7}
+}
+func (m *OrderFulfillment) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderFulfillment.Unmarshal(m, b)
+}
+func (m *OrderFulfillment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderFulfillment.Marshal(b, m, deterministic)
+}
+func (dst *OrderFulfillment) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderFulfillment.Merge(dst, src)
+}
+func (m *OrderFulfillment) XXX_Size() int {
+	return xxx_messageInfo_OrderFulfillment.Size(m)
+}
+func (m *OrderFulfillment) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderFulfillment.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderFulfillment proto.InternalMessageInfo
 
 func (m *OrderFulfillment) GetOrderId() string {
 	if m != nil {
@@ -1586,7 +2138,7 @@ func (m *OrderFulfillment) GetSlug() string {
 	return ""
 }
 
-func (m *OrderFulfillment) GetTimestamp() *google_protobuf.Timestamp {
+func (m *OrderFulfillment) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1629,16 +2181,36 @@ func (m *OrderFulfillment) GetNote() string {
 }
 
 type OrderFulfillment_PhysicalDelivery struct {
-	Shipper        string `protobuf:"bytes,1,opt,name=shipper" json:"shipper,omitempty"`
-	TrackingNumber string `protobuf:"bytes,2,opt,name=trackingNumber" json:"trackingNumber,omitempty"`
+	Shipper              string   `protobuf:"bytes,1,opt,name=shipper" json:"shipper,omitempty"`
+	TrackingNumber       string   `protobuf:"bytes,2,opt,name=trackingNumber" json:"trackingNumber,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *OrderFulfillment_PhysicalDelivery) Reset()         { *m = OrderFulfillment_PhysicalDelivery{} }
 func (m *OrderFulfillment_PhysicalDelivery) String() string { return proto.CompactTextString(m) }
 func (*OrderFulfillment_PhysicalDelivery) ProtoMessage()    {}
 func (*OrderFulfillment_PhysicalDelivery) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{7, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{7, 0}
 }
+func (m *OrderFulfillment_PhysicalDelivery) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderFulfillment_PhysicalDelivery.Unmarshal(m, b)
+}
+func (m *OrderFulfillment_PhysicalDelivery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderFulfillment_PhysicalDelivery.Marshal(b, m, deterministic)
+}
+func (dst *OrderFulfillment_PhysicalDelivery) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderFulfillment_PhysicalDelivery.Merge(dst, src)
+}
+func (m *OrderFulfillment_PhysicalDelivery) XXX_Size() int {
+	return xxx_messageInfo_OrderFulfillment_PhysicalDelivery.Size(m)
+}
+func (m *OrderFulfillment_PhysicalDelivery) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderFulfillment_PhysicalDelivery.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderFulfillment_PhysicalDelivery proto.InternalMessageInfo
 
 func (m *OrderFulfillment_PhysicalDelivery) GetShipper() string {
 	if m != nil {
@@ -1655,16 +2227,36 @@ func (m *OrderFulfillment_PhysicalDelivery) GetTrackingNumber() string {
 }
 
 type OrderFulfillment_DigitalDelivery struct {
-	Url      string `protobuf:"bytes,1,opt,name=url" json:"url,omitempty"`
-	Password string `protobuf:"bytes,2,opt,name=password" json:"password,omitempty"`
+	Url                  string   `protobuf:"bytes,1,opt,name=url" json:"url,omitempty"`
+	Password             string   `protobuf:"bytes,2,opt,name=password" json:"password,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *OrderFulfillment_DigitalDelivery) Reset()         { *m = OrderFulfillment_DigitalDelivery{} }
 func (m *OrderFulfillment_DigitalDelivery) String() string { return proto.CompactTextString(m) }
 func (*OrderFulfillment_DigitalDelivery) ProtoMessage()    {}
 func (*OrderFulfillment_DigitalDelivery) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{7, 1}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{7, 1}
 }
+func (m *OrderFulfillment_DigitalDelivery) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderFulfillment_DigitalDelivery.Unmarshal(m, b)
+}
+func (m *OrderFulfillment_DigitalDelivery) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderFulfillment_DigitalDelivery.Marshal(b, m, deterministic)
+}
+func (dst *OrderFulfillment_DigitalDelivery) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderFulfillment_DigitalDelivery.Merge(dst, src)
+}
+func (m *OrderFulfillment_DigitalDelivery) XXX_Size() int {
+	return xxx_messageInfo_OrderFulfillment_DigitalDelivery.Size(m)
+}
+func (m *OrderFulfillment_DigitalDelivery) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderFulfillment_DigitalDelivery.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderFulfillment_DigitalDelivery proto.InternalMessageInfo
 
 func (m *OrderFulfillment_DigitalDelivery) GetUrl() string {
 	if m != nil {
@@ -1681,15 +2273,37 @@ func (m *OrderFulfillment_DigitalDelivery) GetPassword() string {
 }
 
 type OrderFulfillment_Payout struct {
-	Sigs             []*BitcoinSignature `protobuf:"bytes,1,rep,name=sigs" json:"sigs,omitempty"`
-	PayoutAddress    string              `protobuf:"bytes,2,opt,name=payoutAddress" json:"payoutAddress,omitempty"`
-	PayoutFeePerByte uint64              `protobuf:"varint,3,opt,name=payoutFeePerByte" json:"payoutFeePerByte,omitempty"`
+	Sigs                 []*BitcoinSignature `protobuf:"bytes,1,rep,name=sigs" json:"sigs,omitempty"`
+	PayoutAddress        string              `protobuf:"bytes,2,opt,name=payoutAddress" json:"payoutAddress,omitempty"`
+	PayoutFeePerByte     uint64              `protobuf:"varint,3,opt,name=payoutFeePerByte" json:"payoutFeePerByte,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
 }
 
-func (m *OrderFulfillment_Payout) Reset()                    { *m = OrderFulfillment_Payout{} }
-func (m *OrderFulfillment_Payout) String() string            { return proto.CompactTextString(m) }
-func (*OrderFulfillment_Payout) ProtoMessage()               {}
-func (*OrderFulfillment_Payout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{7, 2} }
+func (m *OrderFulfillment_Payout) Reset()         { *m = OrderFulfillment_Payout{} }
+func (m *OrderFulfillment_Payout) String() string { return proto.CompactTextString(m) }
+func (*OrderFulfillment_Payout) ProtoMessage()    {}
+func (*OrderFulfillment_Payout) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{7, 2}
+}
+func (m *OrderFulfillment_Payout) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderFulfillment_Payout.Unmarshal(m, b)
+}
+func (m *OrderFulfillment_Payout) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderFulfillment_Payout.Marshal(b, m, deterministic)
+}
+func (dst *OrderFulfillment_Payout) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderFulfillment_Payout.Merge(dst, src)
+}
+func (m *OrderFulfillment_Payout) XXX_Size() int {
+	return xxx_messageInfo_OrderFulfillment_Payout.Size(m)
+}
+func (m *OrderFulfillment_Payout) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderFulfillment_Payout.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderFulfillment_Payout proto.InternalMessageInfo
 
 func (m *OrderFulfillment_Payout) GetSigs() []*BitcoinSignature {
 	if m != nil {
@@ -1713,16 +2327,38 @@ func (m *OrderFulfillment_Payout) GetPayoutFeePerByte() uint64 {
 }
 
 type OrderCompletion struct {
-	OrderId    string                     `protobuf:"bytes,1,opt,name=orderId" json:"orderId,omitempty"`
-	Timestamp  *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
-	PayoutSigs []*BitcoinSignature        `protobuf:"bytes,3,rep,name=payoutSigs" json:"payoutSigs,omitempty"`
-	Ratings    []*Rating                  `protobuf:"bytes,4,rep,name=ratings" json:"ratings,omitempty"`
+	OrderId              string               `protobuf:"bytes,1,opt,name=orderId" json:"orderId,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
+	PayoutSigs           []*BitcoinSignature  `protobuf:"bytes,3,rep,name=payoutSigs" json:"payoutSigs,omitempty"`
+	Ratings              []*Rating            `protobuf:"bytes,4,rep,name=ratings" json:"ratings,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *OrderCompletion) Reset()                    { *m = OrderCompletion{} }
-func (m *OrderCompletion) String() string            { return proto.CompactTextString(m) }
-func (*OrderCompletion) ProtoMessage()               {}
-func (*OrderCompletion) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{8} }
+func (m *OrderCompletion) Reset()         { *m = OrderCompletion{} }
+func (m *OrderCompletion) String() string { return proto.CompactTextString(m) }
+func (*OrderCompletion) ProtoMessage()    {}
+func (*OrderCompletion) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{8}
+}
+func (m *OrderCompletion) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderCompletion.Unmarshal(m, b)
+}
+func (m *OrderCompletion) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderCompletion.Marshal(b, m, deterministic)
+}
+func (dst *OrderCompletion) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderCompletion.Merge(dst, src)
+}
+func (m *OrderCompletion) XXX_Size() int {
+	return xxx_messageInfo_OrderCompletion.Size(m)
+}
+func (m *OrderCompletion) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderCompletion.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderCompletion proto.InternalMessageInfo
 
 func (m *OrderCompletion) GetOrderId() string {
 	if m != nil {
@@ -1731,7 +2367,7 @@ func (m *OrderCompletion) GetOrderId() string {
 	return ""
 }
 
-func (m *OrderCompletion) GetTimestamp() *google_protobuf.Timestamp {
+func (m *OrderCompletion) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1753,14 +2389,36 @@ func (m *OrderCompletion) GetRatings() []*Rating {
 }
 
 type Rating struct {
-	RatingData *Rating_RatingData `protobuf:"bytes,1,opt,name=ratingData" json:"ratingData,omitempty"`
-	Signature  []byte             `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	RatingData           *Rating_RatingData `protobuf:"bytes,1,opt,name=ratingData" json:"ratingData,omitempty"`
+	Signature            []byte             `protobuf:"bytes,2,opt,name=signature,proto3" json:"signature,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
+	XXX_unrecognized     []byte             `json:"-"`
+	XXX_sizecache        int32              `json:"-"`
 }
 
-func (m *Rating) Reset()                    { *m = Rating{} }
-func (m *Rating) String() string            { return proto.CompactTextString(m) }
-func (*Rating) ProtoMessage()               {}
-func (*Rating) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{9} }
+func (m *Rating) Reset()         { *m = Rating{} }
+func (m *Rating) String() string { return proto.CompactTextString(m) }
+func (*Rating) ProtoMessage()    {}
+func (*Rating) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{9}
+}
+func (m *Rating) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Rating.Unmarshal(m, b)
+}
+func (m *Rating) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Rating.Marshal(b, m, deterministic)
+}
+func (dst *Rating) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Rating.Merge(dst, src)
+}
+func (m *Rating) XXX_Size() int {
+	return xxx_messageInfo_Rating.Size(m)
+}
+func (m *Rating) XXX_DiscardUnknown() {
+	xxx_messageInfo_Rating.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Rating proto.InternalMessageInfo
 
 func (m *Rating) GetRatingData() *Rating_RatingData {
 	if m != nil {
@@ -1777,26 +2435,48 @@ func (m *Rating) GetSignature() []byte {
 }
 
 type Rating_RatingData struct {
-	RatingKey       []byte                     `protobuf:"bytes,1,opt,name=ratingKey,proto3" json:"ratingKey,omitempty"`
-	VendorID        *ID                        `protobuf:"bytes,2,opt,name=vendorID" json:"vendorID,omitempty"`
-	VendorSig       *RatingSignature           `protobuf:"bytes,3,opt,name=vendorSig" json:"vendorSig,omitempty"`
-	BuyerID         *ID                        `protobuf:"bytes,4,opt,name=buyerID" json:"buyerID,omitempty"`
-	BuyerName       string                     `protobuf:"bytes,5,opt,name=buyerName" json:"buyerName,omitempty"`
-	BuyerSig        []byte                     `protobuf:"bytes,6,opt,name=buyerSig,proto3" json:"buyerSig,omitempty"`
-	ModeratorSig    []byte                     `protobuf:"bytes,7,opt,name=moderatorSig,proto3" json:"moderatorSig,omitempty"`
-	Timestamp       *google_protobuf.Timestamp `protobuf:"bytes,8,opt,name=timestamp" json:"timestamp,omitempty"`
-	Overall         uint32                     `protobuf:"varint,9,opt,name=overall" json:"overall,omitempty"`
-	Quality         uint32                     `protobuf:"varint,10,opt,name=quality" json:"quality,omitempty"`
-	Description     uint32                     `protobuf:"varint,11,opt,name=description" json:"description,omitempty"`
-	DeliverySpeed   uint32                     `protobuf:"varint,12,opt,name=deliverySpeed" json:"deliverySpeed,omitempty"`
-	CustomerService uint32                     `protobuf:"varint,13,opt,name=customerService" json:"customerService,omitempty"`
-	Review          string                     `protobuf:"bytes,14,opt,name=review" json:"review,omitempty"`
+	RatingKey            []byte               `protobuf:"bytes,1,opt,name=ratingKey,proto3" json:"ratingKey,omitempty"`
+	VendorID             *ID                  `protobuf:"bytes,2,opt,name=vendorID" json:"vendorID,omitempty"`
+	VendorSig            *RatingSignature     `protobuf:"bytes,3,opt,name=vendorSig" json:"vendorSig,omitempty"`
+	BuyerID              *ID                  `protobuf:"bytes,4,opt,name=buyerID" json:"buyerID,omitempty"`
+	BuyerName            string               `protobuf:"bytes,5,opt,name=buyerName" json:"buyerName,omitempty"`
+	BuyerSig             []byte               `protobuf:"bytes,6,opt,name=buyerSig,proto3" json:"buyerSig,omitempty"`
+	ModeratorSig         []byte               `protobuf:"bytes,7,opt,name=moderatorSig,proto3" json:"moderatorSig,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,8,opt,name=timestamp" json:"timestamp,omitempty"`
+	Overall              uint32               `protobuf:"varint,9,opt,name=overall" json:"overall,omitempty"`
+	Quality              uint32               `protobuf:"varint,10,opt,name=quality" json:"quality,omitempty"`
+	Description          uint32               `protobuf:"varint,11,opt,name=description" json:"description,omitempty"`
+	DeliverySpeed        uint32               `protobuf:"varint,12,opt,name=deliverySpeed" json:"deliverySpeed,omitempty"`
+	CustomerService      uint32               `protobuf:"varint,13,opt,name=customerService" json:"customerService,omitempty"`
+	Review               string               `protobuf:"bytes,14,opt,name=review" json:"review,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *Rating_RatingData) Reset()                    { *m = Rating_RatingData{} }
-func (m *Rating_RatingData) String() string            { return proto.CompactTextString(m) }
-func (*Rating_RatingData) ProtoMessage()               {}
-func (*Rating_RatingData) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{9, 0} }
+func (m *Rating_RatingData) Reset()         { *m = Rating_RatingData{} }
+func (m *Rating_RatingData) String() string { return proto.CompactTextString(m) }
+func (*Rating_RatingData) ProtoMessage()    {}
+func (*Rating_RatingData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{9, 0}
+}
+func (m *Rating_RatingData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Rating_RatingData.Unmarshal(m, b)
+}
+func (m *Rating_RatingData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Rating_RatingData.Marshal(b, m, deterministic)
+}
+func (dst *Rating_RatingData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Rating_RatingData.Merge(dst, src)
+}
+func (m *Rating_RatingData) XXX_Size() int {
+	return xxx_messageInfo_Rating_RatingData.Size(m)
+}
+func (m *Rating_RatingData) XXX_DiscardUnknown() {
+	xxx_messageInfo_Rating_RatingData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Rating_RatingData proto.InternalMessageInfo
 
 func (m *Rating_RatingData) GetRatingKey() []byte {
 	if m != nil {
@@ -1847,7 +2527,7 @@ func (m *Rating_RatingData) GetModeratorSig() []byte {
 	return nil
 }
 
-func (m *Rating_RatingData) GetTimestamp() *google_protobuf.Timestamp {
+func (m *Rating_RatingData) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1897,19 +2577,41 @@ func (m *Rating_RatingData) GetReview() string {
 }
 
 type Dispute struct {
-	Timestamp          *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
-	Claim              string                     `protobuf:"bytes,2,opt,name=claim" json:"claim,omitempty"`
-	PayoutAddress      string                     `protobuf:"bytes,3,opt,name=payoutAddress" json:"payoutAddress,omitempty"`
-	Outpoints          []*Outpoint                `protobuf:"bytes,4,rep,name=outpoints" json:"outpoints,omitempty"`
-	SerializedContract []byte                     `protobuf:"bytes,5,opt,name=serializedContract,proto3" json:"serializedContract,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
+	Claim                string               `protobuf:"bytes,2,opt,name=claim" json:"claim,omitempty"`
+	PayoutAddress        string               `protobuf:"bytes,3,opt,name=payoutAddress" json:"payoutAddress,omitempty"`
+	Outpoints            []*Outpoint          `protobuf:"bytes,4,rep,name=outpoints" json:"outpoints,omitempty"`
+	SerializedContract   []byte               `protobuf:"bytes,5,opt,name=serializedContract,proto3" json:"serializedContract,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *Dispute) Reset()                    { *m = Dispute{} }
-func (m *Dispute) String() string            { return proto.CompactTextString(m) }
-func (*Dispute) ProtoMessage()               {}
-func (*Dispute) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{10} }
+func (m *Dispute) Reset()         { *m = Dispute{} }
+func (m *Dispute) String() string { return proto.CompactTextString(m) }
+func (*Dispute) ProtoMessage()    {}
+func (*Dispute) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{10}
+}
+func (m *Dispute) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Dispute.Unmarshal(m, b)
+}
+func (m *Dispute) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Dispute.Marshal(b, m, deterministic)
+}
+func (dst *Dispute) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Dispute.Merge(dst, src)
+}
+func (m *Dispute) XXX_Size() int {
+	return xxx_messageInfo_Dispute.Size(m)
+}
+func (m *Dispute) XXX_DiscardUnknown() {
+	xxx_messageInfo_Dispute.DiscardUnknown(m)
+}
 
-func (m *Dispute) GetTimestamp() *google_protobuf.Timestamp {
+var xxx_messageInfo_Dispute proto.InternalMessageInfo
+
+func (m *Dispute) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -1945,20 +2647,42 @@ func (m *Dispute) GetSerializedContract() []byte {
 }
 
 type DisputeResolution struct {
-	Timestamp           *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
-	OrderId             string                     `protobuf:"bytes,2,opt,name=orderId" json:"orderId,omitempty"`
-	ProposedBy          string                     `protobuf:"bytes,3,opt,name=proposedBy" json:"proposedBy,omitempty"`
-	Resolution          string                     `protobuf:"bytes,4,opt,name=resolution" json:"resolution,omitempty"`
-	Payout              *DisputeResolution_Payout  `protobuf:"bytes,5,opt,name=payout" json:"payout,omitempty"`
-	ModeratorRatingSigs [][]byte                   `protobuf:"bytes,6,rep,name=moderatorRatingSigs,proto3" json:"moderatorRatingSigs,omitempty"`
+	Timestamp            *timestamp.Timestamp      `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
+	OrderId              string                    `protobuf:"bytes,2,opt,name=orderId" json:"orderId,omitempty"`
+	ProposedBy           string                    `protobuf:"bytes,3,opt,name=proposedBy" json:"proposedBy,omitempty"`
+	Resolution           string                    `protobuf:"bytes,4,opt,name=resolution" json:"resolution,omitempty"`
+	Payout               *DisputeResolution_Payout `protobuf:"bytes,5,opt,name=payout" json:"payout,omitempty"`
+	ModeratorRatingSigs  [][]byte                  `protobuf:"bytes,6,rep,name=moderatorRatingSigs,proto3" json:"moderatorRatingSigs,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
+	XXX_unrecognized     []byte                    `json:"-"`
+	XXX_sizecache        int32                     `json:"-"`
 }
 
-func (m *DisputeResolution) Reset()                    { *m = DisputeResolution{} }
-func (m *DisputeResolution) String() string            { return proto.CompactTextString(m) }
-func (*DisputeResolution) ProtoMessage()               {}
-func (*DisputeResolution) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{11} }
+func (m *DisputeResolution) Reset()         { *m = DisputeResolution{} }
+func (m *DisputeResolution) String() string { return proto.CompactTextString(m) }
+func (*DisputeResolution) ProtoMessage()    {}
+func (*DisputeResolution) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{11}
+}
+func (m *DisputeResolution) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DisputeResolution.Unmarshal(m, b)
+}
+func (m *DisputeResolution) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DisputeResolution.Marshal(b, m, deterministic)
+}
+func (dst *DisputeResolution) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DisputeResolution.Merge(dst, src)
+}
+func (m *DisputeResolution) XXX_Size() int {
+	return xxx_messageInfo_DisputeResolution.Size(m)
+}
+func (m *DisputeResolution) XXX_DiscardUnknown() {
+	xxx_messageInfo_DisputeResolution.DiscardUnknown(m)
+}
 
-func (m *DisputeResolution) GetTimestamp() *google_protobuf.Timestamp {
+var xxx_messageInfo_DisputeResolution proto.InternalMessageInfo
+
+func (m *DisputeResolution) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -2001,17 +2725,39 @@ func (m *DisputeResolution) GetModeratorRatingSigs() [][]byte {
 }
 
 type DisputeResolution_Payout struct {
-	Sigs            []*BitcoinSignature              `protobuf:"bytes,1,rep,name=sigs" json:"sigs,omitempty"`
-	Inputs          []*Outpoint                      `protobuf:"bytes,2,rep,name=inputs" json:"inputs,omitempty"`
-	BuyerOutput     *DisputeResolution_Payout_Output `protobuf:"bytes,3,opt,name=buyerOutput" json:"buyerOutput,omitempty"`
-	VendorOutput    *DisputeResolution_Payout_Output `protobuf:"bytes,4,opt,name=vendorOutput" json:"vendorOutput,omitempty"`
-	ModeratorOutput *DisputeResolution_Payout_Output `protobuf:"bytes,5,opt,name=moderatorOutput" json:"moderatorOutput,omitempty"`
+	Sigs                 []*BitcoinSignature              `protobuf:"bytes,1,rep,name=sigs" json:"sigs,omitempty"`
+	Inputs               []*Outpoint                      `protobuf:"bytes,2,rep,name=inputs" json:"inputs,omitempty"`
+	BuyerOutput          *DisputeResolution_Payout_Output `protobuf:"bytes,3,opt,name=buyerOutput" json:"buyerOutput,omitempty"`
+	VendorOutput         *DisputeResolution_Payout_Output `protobuf:"bytes,4,opt,name=vendorOutput" json:"vendorOutput,omitempty"`
+	ModeratorOutput      *DisputeResolution_Payout_Output `protobuf:"bytes,5,opt,name=moderatorOutput" json:"moderatorOutput,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                         `json:"-"`
+	XXX_unrecognized     []byte                           `json:"-"`
+	XXX_sizecache        int32                            `json:"-"`
 }
 
-func (m *DisputeResolution_Payout) Reset()                    { *m = DisputeResolution_Payout{} }
-func (m *DisputeResolution_Payout) String() string            { return proto.CompactTextString(m) }
-func (*DisputeResolution_Payout) ProtoMessage()               {}
-func (*DisputeResolution_Payout) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{11, 0} }
+func (m *DisputeResolution_Payout) Reset()         { *m = DisputeResolution_Payout{} }
+func (m *DisputeResolution_Payout) String() string { return proto.CompactTextString(m) }
+func (*DisputeResolution_Payout) ProtoMessage()    {}
+func (*DisputeResolution_Payout) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{11, 0}
+}
+func (m *DisputeResolution_Payout) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DisputeResolution_Payout.Unmarshal(m, b)
+}
+func (m *DisputeResolution_Payout) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DisputeResolution_Payout.Marshal(b, m, deterministic)
+}
+func (dst *DisputeResolution_Payout) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DisputeResolution_Payout.Merge(dst, src)
+}
+func (m *DisputeResolution_Payout) XXX_Size() int {
+	return xxx_messageInfo_DisputeResolution_Payout.Size(m)
+}
+func (m *DisputeResolution_Payout) XXX_DiscardUnknown() {
+	xxx_messageInfo_DisputeResolution_Payout.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DisputeResolution_Payout proto.InternalMessageInfo
 
 func (m *DisputeResolution_Payout) GetSigs() []*BitcoinSignature {
 	if m != nil {
@@ -2049,16 +2795,36 @@ func (m *DisputeResolution_Payout) GetModeratorOutput() *DisputeResolution_Payou
 }
 
 type DisputeResolution_Payout_Output struct {
-	Script string `protobuf:"bytes,1,opt,name=script" json:"script,omitempty"`
-	Amount uint64 `protobuf:"varint,2,opt,name=amount" json:"amount,omitempty"`
+	Script               string   `protobuf:"bytes,1,opt,name=script" json:"script,omitempty"`
+	Amount               uint64   `protobuf:"varint,2,opt,name=amount" json:"amount,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *DisputeResolution_Payout_Output) Reset()         { *m = DisputeResolution_Payout_Output{} }
 func (m *DisputeResolution_Payout_Output) String() string { return proto.CompactTextString(m) }
 func (*DisputeResolution_Payout_Output) ProtoMessage()    {}
 func (*DisputeResolution_Payout_Output) Descriptor() ([]byte, []int) {
-	return fileDescriptor1, []int{11, 0, 0}
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{11, 0, 0}
 }
+func (m *DisputeResolution_Payout_Output) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DisputeResolution_Payout_Output.Unmarshal(m, b)
+}
+func (m *DisputeResolution_Payout_Output) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DisputeResolution_Payout_Output.Marshal(b, m, deterministic)
+}
+func (dst *DisputeResolution_Payout_Output) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DisputeResolution_Payout_Output.Merge(dst, src)
+}
+func (m *DisputeResolution_Payout_Output) XXX_Size() int {
+	return xxx_messageInfo_DisputeResolution_Payout_Output.Size(m)
+}
+func (m *DisputeResolution_Payout_Output) XXX_DiscardUnknown() {
+	xxx_messageInfo_DisputeResolution_Payout_Output.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DisputeResolution_Payout_Output proto.InternalMessageInfo
 
 func (m *DisputeResolution_Payout_Output) GetScript() string {
 	if m != nil {
@@ -2075,16 +2841,38 @@ func (m *DisputeResolution_Payout_Output) GetAmount() uint64 {
 }
 
 type DisputeAcceptance struct {
-	Timestamp *google_protobuf.Timestamp `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
-	ClosedBy  string                     `protobuf:"bytes,2,opt,name=closedBy" json:"closedBy,omitempty"`
+	Timestamp            *timestamp.Timestamp `protobuf:"bytes,1,opt,name=timestamp" json:"timestamp,omitempty"`
+	ClosedBy             string               `protobuf:"bytes,2,opt,name=closedBy" json:"closedBy,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-func (m *DisputeAcceptance) Reset()                    { *m = DisputeAcceptance{} }
-func (m *DisputeAcceptance) String() string            { return proto.CompactTextString(m) }
-func (*DisputeAcceptance) ProtoMessage()               {}
-func (*DisputeAcceptance) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{12} }
+func (m *DisputeAcceptance) Reset()         { *m = DisputeAcceptance{} }
+func (m *DisputeAcceptance) String() string { return proto.CompactTextString(m) }
+func (*DisputeAcceptance) ProtoMessage()    {}
+func (*DisputeAcceptance) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{12}
+}
+func (m *DisputeAcceptance) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DisputeAcceptance.Unmarshal(m, b)
+}
+func (m *DisputeAcceptance) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DisputeAcceptance.Marshal(b, m, deterministic)
+}
+func (dst *DisputeAcceptance) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DisputeAcceptance.Merge(dst, src)
+}
+func (m *DisputeAcceptance) XXX_Size() int {
+	return xxx_messageInfo_DisputeAcceptance.Size(m)
+}
+func (m *DisputeAcceptance) XXX_DiscardUnknown() {
+	xxx_messageInfo_DisputeAcceptance.DiscardUnknown(m)
+}
 
-func (m *DisputeAcceptance) GetTimestamp() *google_protobuf.Timestamp {
+var xxx_messageInfo_DisputeAcceptance proto.InternalMessageInfo
+
+func (m *DisputeAcceptance) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -2099,15 +2887,37 @@ func (m *DisputeAcceptance) GetClosedBy() string {
 }
 
 type Outpoint struct {
-	Hash  string `protobuf:"bytes,1,opt,name=hash" json:"hash,omitempty"`
-	Index uint32 `protobuf:"varint,2,opt,name=index" json:"index,omitempty"`
-	Value uint64 `protobuf:"varint,3,opt,name=value" json:"value,omitempty"`
+	Hash                 string   `protobuf:"bytes,1,opt,name=hash" json:"hash,omitempty"`
+	Index                uint32   `protobuf:"varint,2,opt,name=index" json:"index,omitempty"`
+	Value                uint64   `protobuf:"varint,3,opt,name=value" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Outpoint) Reset()                    { *m = Outpoint{} }
-func (m *Outpoint) String() string            { return proto.CompactTextString(m) }
-func (*Outpoint) ProtoMessage()               {}
-func (*Outpoint) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{13} }
+func (m *Outpoint) Reset()         { *m = Outpoint{} }
+func (m *Outpoint) String() string { return proto.CompactTextString(m) }
+func (*Outpoint) ProtoMessage()    {}
+func (*Outpoint) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{13}
+}
+func (m *Outpoint) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Outpoint.Unmarshal(m, b)
+}
+func (m *Outpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Outpoint.Marshal(b, m, deterministic)
+}
+func (dst *Outpoint) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Outpoint.Merge(dst, src)
+}
+func (m *Outpoint) XXX_Size() int {
+	return xxx_messageInfo_Outpoint.Size(m)
+}
+func (m *Outpoint) XXX_DiscardUnknown() {
+	xxx_messageInfo_Outpoint.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Outpoint proto.InternalMessageInfo
 
 func (m *Outpoint) GetHash() string {
 	if m != nil {
@@ -2131,17 +2941,39 @@ func (m *Outpoint) GetValue() uint64 {
 }
 
 type Refund struct {
-	OrderID           string                     `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
-	Timestamp         *google_protobuf.Timestamp `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
-	Sigs              []*BitcoinSignature        `protobuf:"bytes,3,rep,name=sigs" json:"sigs,omitempty"`
-	RefundTransaction *Refund_TransactionInfo    `protobuf:"bytes,4,opt,name=refundTransaction" json:"refundTransaction,omitempty"`
-	Memo              string                     `protobuf:"bytes,5,opt,name=memo" json:"memo,omitempty"`
+	OrderID              string                  `protobuf:"bytes,1,opt,name=orderID" json:"orderID,omitempty"`
+	Timestamp            *timestamp.Timestamp    `protobuf:"bytes,2,opt,name=timestamp" json:"timestamp,omitempty"`
+	Sigs                 []*BitcoinSignature     `protobuf:"bytes,3,rep,name=sigs" json:"sigs,omitempty"`
+	RefundTransaction    *Refund_TransactionInfo `protobuf:"bytes,4,opt,name=refundTransaction" json:"refundTransaction,omitempty"`
+	Memo                 string                  `protobuf:"bytes,5,opt,name=memo" json:"memo,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
 }
 
-func (m *Refund) Reset()                    { *m = Refund{} }
-func (m *Refund) String() string            { return proto.CompactTextString(m) }
-func (*Refund) ProtoMessage()               {}
-func (*Refund) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{14} }
+func (m *Refund) Reset()         { *m = Refund{} }
+func (m *Refund) String() string { return proto.CompactTextString(m) }
+func (*Refund) ProtoMessage()    {}
+func (*Refund) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{14}
+}
+func (m *Refund) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Refund.Unmarshal(m, b)
+}
+func (m *Refund) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Refund.Marshal(b, m, deterministic)
+}
+func (dst *Refund) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Refund.Merge(dst, src)
+}
+func (m *Refund) XXX_Size() int {
+	return xxx_messageInfo_Refund.Size(m)
+}
+func (m *Refund) XXX_DiscardUnknown() {
+	xxx_messageInfo_Refund.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Refund proto.InternalMessageInfo
 
 func (m *Refund) GetOrderID() string {
 	if m != nil {
@@ -2150,7 +2982,7 @@ func (m *Refund) GetOrderID() string {
 	return ""
 }
 
-func (m *Refund) GetTimestamp() *google_protobuf.Timestamp {
+func (m *Refund) GetTimestamp() *timestamp.Timestamp {
 	if m != nil {
 		return m.Timestamp
 	}
@@ -2179,14 +3011,36 @@ func (m *Refund) GetMemo() string {
 }
 
 type Refund_TransactionInfo struct {
-	Txid  string `protobuf:"bytes,1,opt,name=txid" json:"txid,omitempty"`
-	Value uint64 `protobuf:"varint,2,opt,name=value" json:"value,omitempty"`
+	Txid                 string   `protobuf:"bytes,1,opt,name=txid" json:"txid,omitempty"`
+	Value                uint64   `protobuf:"varint,2,opt,name=value" json:"value,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Refund_TransactionInfo) Reset()                    { *m = Refund_TransactionInfo{} }
-func (m *Refund_TransactionInfo) String() string            { return proto.CompactTextString(m) }
-func (*Refund_TransactionInfo) ProtoMessage()               {}
-func (*Refund_TransactionInfo) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{14, 0} }
+func (m *Refund_TransactionInfo) Reset()         { *m = Refund_TransactionInfo{} }
+func (m *Refund_TransactionInfo) String() string { return proto.CompactTextString(m) }
+func (*Refund_TransactionInfo) ProtoMessage()    {}
+func (*Refund_TransactionInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{14, 0}
+}
+func (m *Refund_TransactionInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Refund_TransactionInfo.Unmarshal(m, b)
+}
+func (m *Refund_TransactionInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Refund_TransactionInfo.Marshal(b, m, deterministic)
+}
+func (dst *Refund_TransactionInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Refund_TransactionInfo.Merge(dst, src)
+}
+func (m *Refund_TransactionInfo) XXX_Size() int {
+	return xxx_messageInfo_Refund_TransactionInfo.Size(m)
+}
+func (m *Refund_TransactionInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_Refund_TransactionInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Refund_TransactionInfo proto.InternalMessageInfo
 
 func (m *Refund_TransactionInfo) GetTxid() string {
 	if m != nil {
@@ -2203,16 +3057,38 @@ func (m *Refund_TransactionInfo) GetValue() uint64 {
 }
 
 type ID struct {
-	PeerID     string      `protobuf:"bytes,1,opt,name=peerID" json:"peerID,omitempty"`
-	Handle     string      `protobuf:"bytes,2,opt,name=handle" json:"handle,omitempty"`
-	Pubkeys    *ID_Pubkeys `protobuf:"bytes,3,opt,name=pubkeys" json:"pubkeys,omitempty"`
-	BitcoinSig []byte      `protobuf:"bytes,4,opt,name=bitcoinSig,proto3" json:"bitcoinSig,omitempty"`
+	PeerID               string      `protobuf:"bytes,1,opt,name=peerID" json:"peerID,omitempty"`
+	Handle               string      `protobuf:"bytes,2,opt,name=handle" json:"handle,omitempty"`
+	Pubkeys              *ID_Pubkeys `protobuf:"bytes,3,opt,name=pubkeys" json:"pubkeys,omitempty"`
+	BitcoinSig           []byte      `protobuf:"bytes,4,opt,name=bitcoinSig,proto3" json:"bitcoinSig,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *ID) Reset()                    { *m = ID{} }
-func (m *ID) String() string            { return proto.CompactTextString(m) }
-func (*ID) ProtoMessage()               {}
-func (*ID) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{15} }
+func (m *ID) Reset()         { *m = ID{} }
+func (m *ID) String() string { return proto.CompactTextString(m) }
+func (*ID) ProtoMessage()    {}
+func (*ID) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{15}
+}
+func (m *ID) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ID.Unmarshal(m, b)
+}
+func (m *ID) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ID.Marshal(b, m, deterministic)
+}
+func (dst *ID) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ID.Merge(dst, src)
+}
+func (m *ID) XXX_Size() int {
+	return xxx_messageInfo_ID.Size(m)
+}
+func (m *ID) XXX_DiscardUnknown() {
+	xxx_messageInfo_ID.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ID proto.InternalMessageInfo
 
 func (m *ID) GetPeerID() string {
 	if m != nil {
@@ -2243,14 +3119,36 @@ func (m *ID) GetBitcoinSig() []byte {
 }
 
 type ID_Pubkeys struct {
-	Identity []byte `protobuf:"bytes,1,opt,name=identity,proto3" json:"identity,omitempty"`
-	Bitcoin  []byte `protobuf:"bytes,2,opt,name=bitcoin,proto3" json:"bitcoin,omitempty"`
+	Identity             []byte   `protobuf:"bytes,1,opt,name=identity,proto3" json:"identity,omitempty"`
+	Bitcoin              []byte   `protobuf:"bytes,2,opt,name=bitcoin,proto3" json:"bitcoin,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ID_Pubkeys) Reset()                    { *m = ID_Pubkeys{} }
-func (m *ID_Pubkeys) String() string            { return proto.CompactTextString(m) }
-func (*ID_Pubkeys) ProtoMessage()               {}
-func (*ID_Pubkeys) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{15, 0} }
+func (m *ID_Pubkeys) Reset()         { *m = ID_Pubkeys{} }
+func (m *ID_Pubkeys) String() string { return proto.CompactTextString(m) }
+func (*ID_Pubkeys) ProtoMessage()    {}
+func (*ID_Pubkeys) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{15, 0}
+}
+func (m *ID_Pubkeys) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ID_Pubkeys.Unmarshal(m, b)
+}
+func (m *ID_Pubkeys) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ID_Pubkeys.Marshal(b, m, deterministic)
+}
+func (dst *ID_Pubkeys) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ID_Pubkeys.Merge(dst, src)
+}
+func (m *ID_Pubkeys) XXX_Size() int {
+	return xxx_messageInfo_ID_Pubkeys.Size(m)
+}
+func (m *ID_Pubkeys) XXX_DiscardUnknown() {
+	xxx_messageInfo_ID_Pubkeys.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ID_Pubkeys proto.InternalMessageInfo
 
 func (m *ID_Pubkeys) GetIdentity() []byte {
 	if m != nil {
@@ -2267,14 +3165,36 @@ func (m *ID_Pubkeys) GetBitcoin() []byte {
 }
 
 type Signature struct {
-	Section        Signature_Section `protobuf:"varint,1,opt,name=section,enum=Signature_Section" json:"section,omitempty"`
-	SignatureBytes []byte            `protobuf:"bytes,2,opt,name=signatureBytes,proto3" json:"signatureBytes,omitempty"`
+	Section              Signature_Section `protobuf:"varint,1,opt,name=section,enum=Signature_Section" json:"section,omitempty"`
+	SignatureBytes       []byte            `protobuf:"bytes,2,opt,name=signatureBytes,proto3" json:"signatureBytes,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
-func (m *Signature) Reset()                    { *m = Signature{} }
-func (m *Signature) String() string            { return proto.CompactTextString(m) }
-func (*Signature) ProtoMessage()               {}
-func (*Signature) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{16} }
+func (m *Signature) Reset()         { *m = Signature{} }
+func (m *Signature) String() string { return proto.CompactTextString(m) }
+func (*Signature) ProtoMessage()    {}
+func (*Signature) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{16}
+}
+func (m *Signature) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Signature.Unmarshal(m, b)
+}
+func (m *Signature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Signature.Marshal(b, m, deterministic)
+}
+func (dst *Signature) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Signature.Merge(dst, src)
+}
+func (m *Signature) XXX_Size() int {
+	return xxx_messageInfo_Signature.Size(m)
+}
+func (m *Signature) XXX_DiscardUnknown() {
+	xxx_messageInfo_Signature.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Signature proto.InternalMessageInfo
 
 func (m *Signature) GetSection() Signature_Section {
 	if m != nil {
@@ -2291,15 +3211,37 @@ func (m *Signature) GetSignatureBytes() []byte {
 }
 
 type SignedListing struct {
-	Listing   *Listing `protobuf:"bytes,1,opt,name=listing" json:"listing,omitempty"`
-	Hash      string   `protobuf:"bytes,2,opt,name=hash" json:"hash,omitempty"`
-	Signature []byte   `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature,omitempty"`
+	Listing              *Listing `protobuf:"bytes,1,opt,name=listing" json:"listing,omitempty"`
+	Hash                 string   `protobuf:"bytes,2,opt,name=hash" json:"hash,omitempty"`
+	Signature            []byte   `protobuf:"bytes,3,opt,name=signature,proto3" json:"signature,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SignedListing) Reset()                    { *m = SignedListing{} }
-func (m *SignedListing) String() string            { return proto.CompactTextString(m) }
-func (*SignedListing) ProtoMessage()               {}
-func (*SignedListing) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{17} }
+func (m *SignedListing) Reset()         { *m = SignedListing{} }
+func (m *SignedListing) String() string { return proto.CompactTextString(m) }
+func (*SignedListing) ProtoMessage()    {}
+func (*SignedListing) Descriptor() ([]byte, []int) {
+	return fileDescriptor_contracts_e7e207e6d0c55fe3, []int{17}
+}
+func (m *SignedListing) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SignedListing.Unmarshal(m, b)
+}
+func (m *SignedListing) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SignedListing.Marshal(b, m, deterministic)
+}
+func (dst *SignedListing) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SignedListing.Merge(dst, src)
+}
+func (m *SignedListing) XXX_Size() int {
+	return xxx_messageInfo_SignedListing.Size(m)
+}
+func (m *SignedListing) XXX_DiscardUnknown() {
+	xxx_messageInfo_SignedListing.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SignedListing proto.InternalMessageInfo
 
 func (m *SignedListing) GetListing() *Listing {
 	if m != nil {
@@ -2373,9 +3315,9 @@ func init() {
 	proto.RegisterEnum("Signature_Section", Signature_Section_name, Signature_Section_value)
 }
 
-func init() { proto.RegisterFile("contracts.proto", fileDescriptor1) }
+func init() { proto.RegisterFile("contracts.proto", fileDescriptor_contracts_e7e207e6d0c55fe3) }
 
-var fileDescriptor1 = []byte{
+var fileDescriptor_contracts_e7e207e6d0c55fe3 = []byte{
 	// 3171 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x5a, 0xbd, 0x73, 0x1b, 0xc7,
 	0xd9, 0x17, 0xbe, 0x81, 0x87, 0x20, 0x01, 0xae, 0x68, 0x19, 0x2f, 0xc6, 0xaf, 0x25, 0x61, 0x64,
