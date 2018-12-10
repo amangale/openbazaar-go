@@ -147,6 +147,7 @@ func (x *Start) Execute(args []string) error {
 	var sqliteDB *db.SQLiteDatastore
 
 	var swarmAddresses []string
+	var shouldReplace bool
 
 	printSplashScreen(x.Verbose)
 
@@ -235,11 +236,13 @@ func (x *Start) Execute(args []string) error {
 		setTestmodeRecordAgingIntervals()
 	}
 
-	swarmAddresses, err = configureIPFSSwarmForTor(x.Tor, x.DualStack)
+	swarmAddresses, shouldReplace, err = configureIPFSSwarmForTor(x.Tor, x.DualStack)
 	if err != nil {
 		return err
 	}
-	cfg.ipfsConfig.Addresses.Swarm = swarmAddresses
+	if shouldReplace {
+		cfg.ipfsConfig.Addresses.Swarm = swarmAddresses
+	}
 
 	swarmAddresses, err = processSwarmAddresses(x.STUN, cfg.ipfsConfig.Addresses.Swarm)
 	if err != nil {
@@ -361,14 +364,14 @@ func (x *Start) Execute(args []string) error {
 		Multiwallet:                   multiwallet,
 		NameSystem:                    nameSystem,
 		OfflineMessageFailoverTimeout: offlineMessageFailoverTimeout,
-		Pubsub:                        pubSub,
-		PushNodes:                     pushNodes,
-		RegressionTestEnable:          x.Regtest,
-		RepoPath:                      repoPath,
-		RootHash:                      ipath.Path(ipfsRootHash.Value).String(),
-		TestnetEnable:                 x.Testnet,
-		TorDialer:                     torDialer,
-		UserAgent:                     core.USERAGENT,
+		Pubsub:               pubSub,
+		PushNodes:            pushNodes,
+		RegressionTestEnable: x.Regtest,
+		RepoPath:             repoPath,
+		RootHash:             ipath.Path(ipfsRootHash.Value).String(),
+		TestnetEnable:        x.Testnet,
+		TorDialer:            torDialer,
+		UserAgent:            core.USERAGENT,
 	}
 	core.PublishLock.Lock()
 
@@ -796,23 +799,26 @@ func getOnionAddress() (string, error) {
 }
 
 // Configure IPFS Swarm for Tor and dual stack nodes
-func configureIPFSSwarmForTor(isTor bool, isDualStack bool) ([]string, error) {
+func configureIPFSSwarmForTor(isTor bool, isDualStack bool) ([]string, bool, error) {
 	retSwarmAddresses := []string{}
+	mergeFlag := false
 	onionAddrString, err := getOnionAddress()
 	if err != nil {
-		return retSwarmAddresses, err
+		return retSwarmAddresses, false, err
 	}
 
 	if isTor {
 		retSwarmAddresses = append(retSwarmAddresses, onionAddrString)
+		mergeFlag = true
 	} else if isDualStack {
 		retSwarmAddresses = append(retSwarmAddresses, onionAddrString)
 		retSwarmAddresses = append(retSwarmAddresses, "/ip4/0.0.0.0/tcp/4001")
 		retSwarmAddresses = append(retSwarmAddresses, "/ip6/::/tcp/4001")
 		retSwarmAddresses = append(retSwarmAddresses, "/ip6/::/tcp/9005/ws")
 		retSwarmAddresses = append(retSwarmAddresses, "/ip4/0.0.0.0/tcp/9005/ws")
+		mergeFlag = true
 	}
-	return retSwarmAddresses, nil
+	return retSwarmAddresses, mergeFlag, nil
 }
 
 // Retrieves identity key from the database and uses it to get the
